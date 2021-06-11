@@ -14,26 +14,26 @@ These instructions will get you a copy of the project up and running on your loc
 ## Prerequisites
 
 
-* #### [Operating system](https://github.com/QACTrainers/hwa-swimr#Operating-system-Windows-10)
-* #### [Programming language](https://github.com/QACTrainers/hwa-swimr#Programming-language-Java-JDK)
-* #### [Spring framework](https://github.com/QACTrainers/hwa-swimr#Spring-framework)
-* #### [Build tool](https://github.com/QACTrainers/hwa-swimr#Build-tool-Maven)
-* #### [Data storage environment](https://github.com/QACTrainers/hwa-swimr#Data-storage-MySQL-WorkBench)
-* #### [Integrates Development Environment](https://github.com/QACTrainers/hwa-swimr#Integrated-Development-Environment-Eclipse-IDE)
-	* ##### [Integrates Development Environment](https://github.com/QACTrainers/hwa-swimr#Integrated-Development-Environment-Eclipse-IDE)
-	* ##### [Integrates Development Environment](https://github.com/QACTrainers/hwa-swimr#Integrated-Development-Visual-Studio-Code)
-* #### [Version control](https://github.com/QACTrainers/hwa-swimr#Version-control-Git-Bash)
+* #### [Operating system](https://github.com/Thealinivan/hwa-swimr#Operating-system-Windows-10)
+* #### [Programming language](https://github.com/Thealinivan/hwa-swimr#Programming-language-Java-JDK)
+* #### [Spring framework](https://github.com/Thealinivan/hwa-swimr#Spring-framework)
+* #### [Build tool](https://github.com/Thealinivan/hwa-swimr#Build-tool-Maven)
+* #### [Data storage environment](https://github.com/Thealinivan/hwa-swimr#Data-storage-MySQL-WorkBench)
+* #### [Integrates Development Environment](https://github.com/Thealinivan/hwa-swimr#Integrated-Development-Environment-Eclipse-IDE)
+	* ##### [Integrates Development Environment](https://github.com/Thealinivan/hwa-swimr#Integrated-Development-Environment-Eclipse-IDE)
+	* ##### [Integrates Development Environment](https://github.com/Thealinivan/hwa-swimr#Integrated-Development-Visual-Studio-Code)
+* #### [Version control](https://github.com/Thealinivan/hwa-swimr#Version-control-Git-Bash)
 
 
 
 ## Runing the project
 
-* #### [Running on the local environment](https://github.com/QACTrainers/hwa-swimr#Running-the-project-in-development)
-* #### [Testing](https://github.com/QACTrainers/hwa-swimr#Testing)
-	* ##### [Unit testing](https://github.com/QACTrainers/thealinivan-assessment#Unit-Tests-JUnit)
-	* ##### [Integration testing](https://github.com/QACTrainers/hwa-swimr#Integration-tests-Mockito)
-	* ##### [Code quality testing](https://github.com/QACTrainers/hwa-swimr#Static-analysis-tests-SonarQube)
-* #### [Deployment](https://github.com/QACTrainers/hwa-swimr#Deployment-Maven)
+* #### [Running on the local environment](https://github.com/Thealinivan/hwa-swimr#Running-the-project-in-development)
+* #### [Testing](https://github.com/Thealinivan/hwa-swimr#Testing)
+	* ##### [Unit testing](https://github.com/Thealinivan/thealinivan-assessment#Unit-Tests-JUnit)
+	* ##### [Integration testing](https://github.com/Thealinivan/hwa-swimr#Integration-tests-Mockito)
+	* ##### [Code quality testing](https://github.com/Thealinivan/hwa-swimr#Static-analysis-tests-SonarQube)
+* #### [Deployment](https://github.com/Thealinivan/hwa-swimr#Deployment-Maven)
 
 
 
@@ -127,9 +127,9 @@ Open an instance of Git Bash and navigate to your projects folder
 ```
 cd <your folder path>
 ```
-Next by runing the following command, you will clone your repository to your local environment using the repository link https://github.com/QACTrainers/hwa-swimr.git
+Next by runing the following command, you will clone your repository to your local environment using the repository link https://github.com/Thealinivan/hwa-swimr.git
 ```
-git clone https://github.com/QACTrainers/hwa-swimr.git
+git clone https://github.com/Thealinivan/hwa-swimr.git
 ```
 Next by runnning the following command you will navigate to the cloned project folder
 ```
