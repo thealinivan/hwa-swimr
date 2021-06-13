@@ -186,7 +186,20 @@ $(window).bind("load", function () {
     //...
 
     //PLACES
-    //..
+    //Create place
+    $("#add-form").submit((event) => {
+        event.preventDefault();
+        renderPlace(getDataFromForm());
+    })
+    //Read places
+    readPlacesToDOM(places);
+    //Update place
+    $('#btn-update').addEventListener('show.bs.modal', function (event) {
+        let id = $(event.relatedTarget).data('id');
+        //get modal field and populate from places obj array using id
+    })
+    //Delete place
+    //...
 
 
     //CLUBS
