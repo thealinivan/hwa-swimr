@@ -172,6 +172,7 @@ $(window).bind("load", function () {
         event.preventDefault();
         const addedPlace = getDataFromAddForm();
         createPlace(addedPlace);
+
     })
 
     //Read places

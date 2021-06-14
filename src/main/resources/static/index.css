@@ -1,0 +1,197 @@
+*{
+    font-family: 'Questrial', sans-serif;
+    color: #408dca;
+}
+header{
+ 
+    margin-bottom: 5px solid #408dca;
+    position: absolute;
+    top: 0;
+    width:100%;
+    z-index:100;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12)
+}
+
+.logo-img{
+    width:110px;
+}
+.btn{
+    min-width: 100px;
+}
+.form-inline{
+    display: inline-block;
+}
+
+h2{
+    text-align: center;
+    color: #408dca;
+    height: auto;
+}
+
+.add-form{
+    margin-top:30px;
+    margin-bottom: 2rem;;
+    padding:1rem;
+    width:80%;
+    margin-left:10%;
+    border: 1px solid #408dca;
+    border-radius: 5px;
+    max-height: 70px;
+    transition: max-height 0.15s ease-out;
+    overflow: hidden;
+    -moz-transition: max-height 1s ease;
+    -webkit-transition: height 1s ease;
+    -o-transition: height 1s ease;
+    transition: max-height 1s ease;
+}
+.add-form:hover{
+    max-height: 500px;
+    transition: max-height 0.25s ease-in;
+}
+
+
+
+/* carousel */
+
+.d-block{
+object-fit: cover;
+width: 90%;
+height: 400px;
+}
+
+/* render */
+h3{
+    padding: .3rem;
+}
+.card-el-icon{
+    max-width: 40px;
+}
+.card-container{
+    padding:.5rem;
+    margin:2rem;
+    border: 1px solid #59595925;
+    border-radius: 5px;
+    box-shadow: 0 10px 18px rgba(0,0,0,0.1), 0 5px 5px rgba(0,0,0,0.1);
+}
+
+.club-container{
+  margin:1rem;
+  max-height: 400px;
+  overflow: hidden;
+  
+}
+
+.club-img-cont{
+    background: rgba(0, 0, 0, 0.356);
+    color:white;
+    text-align:center;
+    min-height: 200px;
+    transition: all 1s ease-out;
+    overflow: hidden;
+    -moz-transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    -o-transition:all 1s ease;
+    transition: all 1s ease;
+
+}
+.club-img-container{
+    background: rgba(61, 61, 61, 0.11);
+    color:white;
+    text-align:center;
+
+    transition: all 1s ease-out;
+    overflow: hidden;
+    -moz-transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    -o-transition:all 1s ease;
+    transition: all 1s ease;
+
+}
+.club-img-cont:hover{
+    background: rgba(0, 0, 0, 0.678);
+    transition: all color 0.25s ease-in;
+    cursor:pointer;
+}
+.club-img-cont:hover > .clubs-img-title {
+    color: #408dca;
+    transition: all 0.25s ease-in;
+    cursor:pointer;
+}
+
+.club-img-title{
+    background-color: rgba(0, 0, 0, 0.397);
+    padding:20px;
+    position:relative;
+    color:white;
+    font-size: 2rem;
+    margin-top:10%;
+}
+#club-img{
+object-fit: center;
+z-index:-1;
+}
+#swim-clubs{
+    margin:0;
+    padding:100px;
+  
+}
+#club-card-name:hover{
+cursor:pointer;    
+}
+
+.card-img {
+    object-fit:cover;
+    height:100%;
+}
+.body-el{
+    padding:.6rem;
+}
+.card-btn{
+    padding:.7rem;
+}
+
+.foot-container{
+    background-color: #595959;
+}
+
+.foot-img{
+    max-width: 50px;
+    margin:50px;
+    padding: .1rem;
+}
+.foot-el:hover{
+    background-color: #7a7a7a;
+}
+.search-field{
+    background: rgba(0, 0, 0, 0.356);
+    border:rgba(0, 0, 0, 0.514);
+}
+.navbar{
+       background: #2c2c2cce;
+}
+.search-field:focus{
+    color:white;
+    background-color: rgba(54, 54, 54, 0.041);
+}
+.btn-outline-primary{
+    color: #408dca;
+    border:2px solid #408dca;
+}
+
+.add-btn{
+    float:right;
+    margin-top:0px;
+}
+a{
+    text-decoration:none;
+}
+
+
+
+
