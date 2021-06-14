@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title href="swimr.html">Swimr</title>
+    <!-- favicons -->
+    <link rel="icon" href="img/favicon2.png">
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- styles -->
+    <link rel="stylesheet" href="index.css">
+
+    <!-- scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="clubs.js" async></script>
+    <!-- Google maps API -->
+    <!-- <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUfUckWghbs-wyuV-KNPODMAQcog4qA28&callback=initMap">
+        </script> -->
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img class="logo-img" src="img/logo_small1.png" alt="marketplace logo">
+                </a>
+                <form class="d-flex">
+                    <input class="form-control me-2 search-field" type="search" placeholder="Search places.."
+                        aria-label="Search" id="field-search">
+                    <button class="btn btn-outline-primary" type="submit" id="btn-search">Search</button>
+                </form>
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- main -->
+    <main>
+
+        <!-- clubs title -->
+        <section>
+            <div class="clubs-container">
+                <a href="club.html">
+                    <div class="row align-self-center club-img-container">
+                        <h4 class="club-img-title">Swimming clubs</h4>
+                        <img id="club-img" src="img/club.jpg" alt="swimming club team">
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- add club -->
+        <section>
+            <form id="club-form" class="add-form">
+                <h2>Add a club</h2>
+                <br>
+                <div class="form-group">
+                    <label for="add-club-name">Club name</label>
+                    <input type="name" name="name" class="form-control" id="add-club-name" aria-describedby="nameHelp"
+                        placeholder="Club name..">
+                </div>
+                <br>
+                <button type="submit" id="add-btn" class="btn btn-outline-primary add-btn">Add club</button>
+            </form>
+        </section>
+
+        <!-- club list -->
+        <section>
+            <div id="render-club">
+
+                <!-- card -->
+                <div class="card-container">
+                    <div class="row align-self-center">
+
+                        <!-- body -->
+                        <div class="col-sm-12 col-md-9 col-lg-9 ">
+                            <div class="container">
+
+                                <!-- card-title -->
+                                <div class="col-sm-12 body-el">
+                                    <h3 id="club-card-name">Club name</h3>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- buttons -->
+                        <div class="col-sm-12 col-md-3 col-lg-3 text-center">
+
+                            <div class="col-sm-12 card-el text-center card-btn">
+                                <button type="submit" class="btn btn-outline-danger card-el"
+                                    id="delete-club-btn">Delete</button>
+                            </div>
+                            <div class="col-sm-12 card-el text-center card-btn">
+                                <button type="submit" data-bs-toggle="modal" data-bs-target="#btn-update-club"
+                                    class="btn btn-outline-warning card-el">Update</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- articles list -->
+        <section>
+            <div id="render">
+
+                <!-- card -->
+                <div class="card-container">
+                    <div class="row align-self-center">
+
+                        <!-- img -->
+                        <div class="col-sm-12 col-md-4 col-lg-4 text-center" id="card-map">
+                            <div id="map" class="card-img"></div>
+                        </div>
+
+                        <!-- body -->
+                        <div class="col-sm-12 col-md-5 col-lg-6 ">
+                            <div class="container">
+
+                                <!-- card-title -->
+                                <div class="col-sm-12 body-el">
+                                    <h3 id="card-name">Hackney Leisure Centre</h3>
+                                </div>
+
+                                <!-- card-type -->
+                                <div class="row align-self-center">
+                                    <div class="col-sm-3 col-md-6 col-lg-2 text-center">
+                                        <img class="card-el-icon" src="img/icon_pool.png" alt="Pool icon">
+                                    </div>
+                                    <div class="col-sm-3 col-md-4 col-lg-3 text-center body-el" id="card-type">
+                                        Indoor
+                                    </div>
+                                </div>
+
+                                <!-- card-postcode -->
+                                <div class="row align-self-center">
+                                    <div class="col-sm-3 col-md-6 col-lg-2 text-center">
+                                        <img class="card-el-icon" src="img/icon_pin.png" alt="pin icon">
+                                    </div>
+                                    <div class="col-sm-3 col-md-4 col-lg-3 text-center body-el" id="card-postcode">
+                                        E3 5PN
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- buttons -->
+                        <div class="col-sm-12 col-md-3 col-lg-2 text-center">
+
+                            <div class="col-sm-12 card-el text-center card-btn">
+                                <button type="submit" class="btn btn-outline-danger card-el" id="delete-btn">Remove from
+                                    club</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- modal -->
+        <section>
+
+            <div class="modal" id="btn-update-club" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Subscribe a swimmming place</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form id="update-form" class="update-form">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="update-select-place">Places</label>
+                                    </div>
+                                    <select class="update-select-place" id="update-select-place">
+                                        <option value="" selected disabled hidden>Swimming place</option>
+                                        <option value="1">Some place title</option>
+                                        <option value="2">Another place</option>
+                                    </select>
+                                </div>
+                                <br>
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-primary" id="update-btn">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        </section>
+
+    </main>
+
+    <!-- footer -->
+    <footer>
+        <div class="foot-container">
+            <div class="row">
+                <div class="col-sm-3 card-el text-center foot-el">
+                    <a href="https://www.facebook.com/"><img class="foot-img" src="img/icon_facebook.png"
+                            alt="facebook icon"></a>
+                </div>
+                <div class="col-sm-3 card-el text-center foot-el">
+                    <a href="https://twitter.com/?lang=en-gb"><img class="foot-img" src="img/icon_twitter.png"
+                            alt="twitter icon"></a>
+                </div>
+                <div class="col-sm-3 card-el text-center foot-el">
+                    <a href="https://www.instagram.com/"><img class="foot-img" src="img/icon_instagram.png"
+                            alt="instagram icon"></a>
+                </div>
+                <div class="col-sm-3 card-el text-center foot-el">
+                    <a href="https://www.linkedin.com/in/"><img class="foot-img" src="img/icon_linkedin.png"
+                            alt="linkedin icon"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- bootstrap -->
+    <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>
