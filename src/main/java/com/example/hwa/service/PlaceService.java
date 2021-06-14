@@ -3,6 +3,8 @@ package com.example.hwa.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.stereotype.Service;
 
 import com.example.hwa.domain.Place;
@@ -35,8 +37,16 @@ public class PlaceService {
 			dto = this.mapper.mapToDTO(place);
 			dtos.add(dto);
 		}
-		
 		return dtos;
+	}
+
+	//update
+	public PlaceDTO updatePlace(Integer id, Place place) {
+		Place current = this.repo.findById(id).orElseThrow(() -> new EntityNotFoundException());
+		current.setName(place.getName()); 
+		current.setPostcode(place.getPostcode());
+		Place updated = this.repo.save(current); 
+		return this.mapper.mapToDTO(updated);
 	}
 	
 }
