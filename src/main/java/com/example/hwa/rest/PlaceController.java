@@ -3,6 +3,7 @@ package com.example.hwa.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -42,6 +43,12 @@ public class PlaceController {
 	@PutMapping("/update/{id}")
 	public PlaceDTO updatePlace(@RequestBody Place place, @PathVariable Integer id) {
 		return this.service.updatePlace(id, place);
+	}
+	
+	//delete
+	@DeleteMapping("/delete/{id}")
+	public boolean deletePlace(@PathVariable int id) {
+		return this.service.deletePlace(id);
 	}
 	
 	

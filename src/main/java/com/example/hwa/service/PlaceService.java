@@ -48,5 +48,10 @@ public class PlaceService {
 		Place updated = this.repo.save(current); 
 		return this.mapper.mapToDTO(updated);
 	}
+
+	public boolean deletePlace(int id) {
+		this.repo.deleteById(id);
+		return !this.repo.existsById(id);
+	}
 	
 }
