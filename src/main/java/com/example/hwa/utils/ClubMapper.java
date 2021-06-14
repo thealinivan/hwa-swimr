@@ -26,10 +26,12 @@ public class ClubMapper implements Mapper<Club, ClubDTO> {
 		List<PlaceDTO> places = new ArrayList<>();
 		dto.setId(club.getId());
 		dto.setName(club.getName());
-		for (Place place : club.getPlaces()) {
-			places.add(this.placeMapper.mapToDTO(place));
-		}
-		dto.setPlaces(places);
+		
+			for (Place place : club.getPlaces()) {
+				places.add(this.placeMapper.mapToDTO(place));
+			}
+			dto.setPlaces(places);
+
 		return dto;
 	}
 

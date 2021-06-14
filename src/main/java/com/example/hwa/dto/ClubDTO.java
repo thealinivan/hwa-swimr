@@ -7,6 +7,21 @@ public class ClubDTO {
 	private String name;
 	private List<PlaceDTO> places;
 	
+	public ClubDTO() {}
+
+	public ClubDTO(String name, List<PlaceDTO> places) {
+		super();
+		this.name = name;
+		this.places = places;
+	}
+
+	public ClubDTO(Integer id, String name, List<PlaceDTO> places) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.places = places;
+	}
+
 	public Integer getId() {
 		return id;
 	}
