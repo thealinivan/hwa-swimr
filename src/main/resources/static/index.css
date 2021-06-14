@@ -91,7 +91,7 @@ h3{
     background: rgba(0, 0, 0, 0.356);
     color:white;
     text-align:center;
-
+    min-height: 200px;
     transition: all 1s ease-out;
     overflow: hidden;
     -moz-transition: all 1s ease;
@@ -191,11 +191,7 @@ cursor:pointer;
 a{
     text-decoration:none;
 }
-select, option{
-    min-width:300px;
-    max-width:200px;
-    overflow:hidden;;
-}
+
 
 
 

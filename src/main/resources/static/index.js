@@ -36,14 +36,12 @@ const places = [
     {
         id: 1,
         name: "Hackney Leisure Centre",
-        postcode: "SE2 9XA",
-        type: "Indoor"
+        postcode: "SE2 9XA"
     },
     {
         id: 2,
         name: "Eastham swimming pool",
-        postcode: "E12 6LB",
-        type: "Outdoor"
+        postcode: "E12 6LB"
     }
 ];
 
@@ -83,16 +81,6 @@ function renderPlace(place) {
                                 <!-- card-title -->
                                 <div class="col-sm-12 body-el">
                                     <h3 id="card-name">${place.name}</h3>
-                                </div>
-
-                                <!-- card-type -->
-                                <div class="row align-self-center">
-                                    <div class="col-sm-3 col-md-6 col-lg-2 text-center">
-                                        <img class="card-el-icon" src="img/icon_pool.png" alt="Pool icon">
-                                    </div>
-                                    <div class="col-sm-3 col-md-4 col-lg-3 text-center body-el" id="card-type">
-                                        ${place.type}
-                                    </div>
                                 </div>
 
                                 <!-- card-postcode -->
@@ -141,13 +129,11 @@ function readPlacesToDOM(places) {
 function getDataFromAddForm() {
     const pName = document.getElementById("add-name").value;
     const pPostcode = document.getElementById("add-postcode").value;
-    const pType = document.getElementById("add-select").value;
 
     const place = {
         id: 1,
         name: pName,
-        postcode: pPostcode,
-        type: pType
+        postcode: pPostcode
     }
     return place;
 }
@@ -156,13 +142,10 @@ function getDataFromAddForm() {
 function getDataFromUpdateForm() {
     const pName = document.getElementById("update-name").value;
     const pPostcode = document.getElementById("update-postcode").value;
-    const pType = document.getElementById("update-select").value;
 
     const place = {
-        id: 1,
         name: pName,
-        postcode: pPostcode,
-        type: pType
+        postcode: pPostcode
     }
     console.log(place);
     return place;
@@ -180,6 +163,7 @@ $(window).bind("load", function () {
     $("#add-form").submit((event) => {
         event.preventDefault();
         const addedPlace = getDataFromAddForm();
+        console.log(addedPlace);
         renderPlace(addedPlace);
     })
 
