@@ -51,8 +51,7 @@ function createPlace(place) {
         .then(res => {
             //readAllPlaces();
             renderPlace(place);
-            this.reset();
-            this.make.focus();
+            //empty form
         }).catch(err => console.log(err));
 }
 
