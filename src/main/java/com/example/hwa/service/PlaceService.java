@@ -2,6 +2,8 @@ package com.example.hwa.service;
 
 import org.springframework.stereotype.Service;
 
+import com.example.hwa.domain.Place;
+import com.example.hwa.dto.PlaceDTO;
 import com.example.hwa.repo.PlaceRepo;
 import com.example.hwa.utils.PlaceMapper;
 
@@ -13,6 +15,12 @@ public class PlaceService {
 		super();
 		this.repo = repo;
 		this.mapper = mapper;
+	}
+	
+	//create
+	public PlaceDTO createPlace(Place place) {
+		Place saved = this.repo.save(place);
+		return this.mapper.mapToDTO(saved);
 	}
 	
 }
