@@ -2,14 +2,14 @@ package com.example.hwa.service;
 
 import org.springframework.stereotype.Service;
 
-import com.example.hwa.repo.ClubRepo;
-import com.example.hwa.utils.ClubMapper;
+import com.example.hwa.repo.PlaceRepo;
+import com.example.hwa.utils.PlaceMapper;
 
 @Service
 public class PlaceService {
-	private ClubRepo repo;
-	private ClubMapper mapper;
-	public PlaceService(ClubRepo repo, ClubMapper mapper) {
+	private PlaceRepo repo;
+	private PlaceMapper mapper;
+	public PlaceService(PlaceRepo repo, PlaceMapper mapper) {
 		super();
 		this.repo = repo;
 		this.mapper = mapper;
