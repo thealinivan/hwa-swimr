@@ -11,7 +11,7 @@ const getClubs = async () => {
 const renderClub = (club) => {
     const card = document.createElement("div");
     column.className = "col";
-
+  
     const card = document.createElement("div");
     card.className = "card";
     column.appendChild(card);
