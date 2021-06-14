@@ -2,7 +2,7 @@
 //API
 
 //MAPS(POSTCODES) API
-//render map to for a place
+//Render map to for a place
 function getMap(POSTCODE, TARGET) {
     const POSTCODES_URL = "https://api.postcodes.io/postcodes/"
 
@@ -15,7 +15,6 @@ function getMap(POSTCODE, TARGET) {
                 lng: data.result.longitude
             }
             function initMap(coord) {
-                console.log(TARGET);
                 const map = new google.maps.Map(TARGET, {
                     center: coord,
                     zoom: 16,
@@ -32,16 +31,16 @@ function getMap(POSTCODE, TARGET) {
 
 
 //PLACES API
-//Place API 
+//Places Array
 const places = [
     {
-        id: 0,
+        id: 1,
         name: "Hackney Leisure Centre",
         postcode: "SE2 9XA",
         type: "Indoor"
     },
     {
-        id: 1,
+        id: 2,
         name: "Eastham swimming pool",
         postcode: "E12 6LB",
         type: "Outdoor"
@@ -50,30 +49,23 @@ const places = [
 
 //Create place fetch
 //...
+
 //Read place fetch
 //...
+
 //Update place fetch
 //...
+
 //Delete place fetch
-//...
+function deletePlace(clickedId) {
+    const id = clickedId;
+    console.log(`deletePlace: ${id}`)
+}
 
 
-//CLUBS API
-//Create club fetch
-//...
-//Read clubs fetch
-//...
-//Update club(assign place) fetch
-//...
-//Update club(remove place) fetch
-//Delete club fetch
-//...
+//RENDER
 
-
-//RENDER DATA TO DOM
-//PLACES
-
-//Render a place
+//Place card
 function renderPlace(place) {
     const card = `
                 <div class="card-container" id=${place.id}>
@@ -120,7 +112,7 @@ function renderPlace(place) {
                         <div class="col-sm-12 col-md-3 col-lg-2 text-center">
 
                             <div class="col-sm-12 card-el text-center card-btn">
-                                <button type="submit" class="btn btn-outline-danger card-el"
+                                <button type="submit" onClick="deletePlace(${place.id})"class="btn btn-outline-danger card-el"
                                     id='card-delete-btn'>Delete</button>
                             </div>
                             <div class="col-sm-12 card-el text-center card-btn">
@@ -135,27 +127,18 @@ function renderPlace(place) {
     $("#render").append(card);
     getMap(place.postcode, document.getElementById(`map-${place.id}`));
 }
-//Read places to DOM
+
+//Read places list
 function readPlacesToDOM(places) {
     places.forEach(p => {
         renderPlace(p);
     })
 }
 
-//CLUBS
-//...
+//FORMS
 
-//Read clubs to DOM
-function readClubsToDOM(clubs) {
-    clubs.forEach(c => {
-        renderClub(c);
-    })
-}
-
-//GET DATA FROM FORMS
-//PLACES
 //Add a place form
-function getDataFromForm() {
+function getDataFromAddForm() {
     const pName = document.getElementById("add-name").value;
     const pPostcode = document.getElementById("add-postcode").value;
     const pType = document.getElementById("add-select").value;
@@ -164,18 +147,26 @@ function getDataFromForm() {
         id: 1,
         name: pName,
         postcode: pPostcode,
-        type: pType,
-        clubId: null
+        type: pType
     }
-    console.log("nameascas: " + place.name);
     return place;
 }
 
-//CLUBS
-//Add a club form
-//...
+//Update a place form
+function getDataFromUpdateForm() {
+    const pName = document.getElementById("update-name").value;
+    const pPostcode = document.getElementById("update-postcode").value;
+    const pType = document.getElementById("update-select").value;
 
-
+    const place = {
+        id: 1,
+        name: pName,
+        postcode: pPostcode,
+        type: pType
+    }
+    console.log(place);
+    return place;
+}
 
 //ON DOCUMENT LOAD
 $(window).bind("load", function () {
@@ -185,32 +176,32 @@ $(window).bind("load", function () {
     //SEARCH
     //...
 
-    //PLACES
     //Create place
     $("#add-form").submit((event) => {
         event.preventDefault();
-        renderPlace(getDataFromForm());
+        const addedPlace = getDataFromAddForm();
+        renderPlace(addedPlace);
     })
+
     //Read places
     readPlacesToDOM(places);
-    //Update place
-    $('#btn-update').addEventListener('show.bs.modal', function (event) {
+
+    //Update place: open modal
+    document.getElementById('btn-update').addEventListener('show.bs.modal', function (event) {
         let id = $(event.relatedTarget).data('id');
+        console.log(id);
         //get modal field and populate from places obj array using id
     })
+
+    //Update place: submit
+    document.getElementById("update-btn").addEventListener('click', () => {
+        const updatedPlace = getDataFromUpdateForm();
+        renderPlace(updatedPlace);
+    })
+
     //Delete place
-    //...
+    //..is handled on the html onclick event
 
-
-    //CLUBS
-    //Create club
-    //...
-    //Update (asign place)
-    //...
-    //Remove (from club)
-    //...
-    //Delete
-    //...
 
 })
 
