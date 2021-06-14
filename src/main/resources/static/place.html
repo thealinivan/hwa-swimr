@@ -19,7 +19,7 @@
 
     <!-- scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="clubs.js" async></script>
+    <script src="place.js" async></script>
     <!-- Google maps API -->
     <!-- <script async
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUfUckWghbs-wyuV-KNPODMAQcog4qA28&callback=initMap">
@@ -50,128 +50,37 @@
         <!-- clubs title -->
         <section>
             <div class="clubs-container">
-                <a href="club.html">
-                    <div class="row align-self-center club-img-container">
-                        <h4 class="club-img-title">Swimming clubs</h4>
-                        <img id="club-img" src="img/club.jpg" alt="swimming club team">
-                    </div>
-                </a>
-            </div>
+                <div class="row align-self-center club-img-container">
+                    <h4 class="club-img-title">Club name</h4>
+                </div>
         </section>
 
-        <!-- add club -->
+        <!-- add form -->
         <section>
-            <form id="club-form" class="add-form">
-                <h2>Add a club</h2>
+            <form id="add-form" class="add-form">
+                <h2>Add a swimming place</h2>
                 <br>
                 <div class="form-group">
-                    <label for="add-club-name">Club name</label>
-                    <input type="name" name="name" class="form-control" id="add-club-name" aria-describedby="nameHelp"
-                        placeholder="Club name..">
+                    <label for="add-name">Swimming place name</label>
+                    <input type="name" name="name" class="form-control" id="add-name" aria-describedby="nameHelp"
+                        placeholder="Place name..">
                 </div>
                 <br>
-                <button type="submit" id="add-btn" class="btn btn-outline-primary add-btn">Add club</button>
-            </form>
-        </section>
-
-        <!-- club list -->
-        <section>
-            <div id="render-club">
-
-                <!-- card -->
-                <div class="card-container">
-                    <div class="row align-self-center">
-
-                        <!-- body -->
-                        <div class="col-sm-12 col-md-9 col-lg-9 ">
-                            <div class="container">
-
-                                <!-- card-title -->
-                                <div class="col-sm-12 body-el">
-                                    <h3 id="club-card-name">Club name</h3>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- buttons -->
-                        <div class="col-sm-12 col-md-3 col-lg-3 text-center">
-
-                            <div class="col-sm-12 card-el text-center card-btn">
-                                <button type="submit" class="btn btn-outline-danger card-el"
-                                    id="delete-club-btn">Delete</button>
-                            </div>
-                            <div class="col-sm-12 card-el text-center card-btn">
-                                <button type="submit" data-bs-toggle="modal" data-bs-target="#btn-update-club"
-                                    class="btn btn-outline-warning card-el">Update</button>
-                            </div>
-
-                        </div>
-
-                    </div>
+                <div class="form-group">
+                    <label for="add-postcode">Location postcode</label>
+                    <input type="postcode" name="postcode" class="form-control" id="add-postcode"
+                        placeholder="Postcode..">
                 </div>
-
-            </div>
+                <br>
+                <button type="submit" id="add-btn" class="btn btn-outline-primary add-btn">Add swimming
+                    place</button>
+            </form>
         </section>
 
         <!-- articles list -->
         <section>
             <div id="render">
-
-                <!-- card -->
-                <div class="card-container">
-                    <div class="row align-self-center">
-
-                        <!-- img -->
-                        <div class="col-sm-12 col-md-4 col-lg-4 text-center" id="card-map">
-                            <div id="map" class="card-img"></div>
-                        </div>
-
-                        <!-- body -->
-                        <div class="col-sm-12 col-md-5 col-lg-6 ">
-                            <div class="container">
-
-                                <!-- card-title -->
-                                <div class="col-sm-12 body-el">
-                                    <h3 id="card-name">Hackney Leisure Centre</h3>
-                                </div>
-
-                                <!-- card-type -->
-                                <div class="row align-self-center">
-                                    <div class="col-sm-3 col-md-6 col-lg-2 text-center">
-                                        <img class="card-el-icon" src="img/icon_pool.png" alt="Pool icon">
-                                    </div>
-                                    <div class="col-sm-3 col-md-4 col-lg-3 text-center body-el" id="card-type">
-                                        Indoor
-                                    </div>
-                                </div>
-
-                                <!-- card-postcode -->
-                                <div class="row align-self-center">
-                                    <div class="col-sm-3 col-md-6 col-lg-2 text-center">
-                                        <img class="card-el-icon" src="img/icon_pin.png" alt="pin icon">
-                                    </div>
-                                    <div class="col-sm-3 col-md-4 col-lg-3 text-center body-el" id="card-postcode">
-                                        E3 5PN
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- buttons -->
-                        <div class="col-sm-12 col-md-3 col-lg-2 text-center">
-
-                            <div class="col-sm-12 card-el text-center card-btn">
-                                <button type="submit" class="btn btn-outline-danger card-el" id="delete-btn">Remove from
-                                    club</button>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
+                <!-- Places list goes here -->
             </div>
         </section>
 

@@ -47,12 +47,12 @@
     <!-- main -->
     <main>
 
-        <!-- categories -->
+        <!-- carousel -->
         <section id="carousel" class="carousel-categories">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="img/indoor.jpg" class="d-block w-100" alt="indoor pool">
+                        <img src="img/club.jpg" class="d-block w-100" alt="swimming people club">
                     </div>
                     <div class="carousel-item">
                         <img src="img/outdoor.png" class="d-block w-100" alt="outdoor ocean golf">
@@ -71,45 +71,24 @@
             </div>
         </section>
 
-        <!-- clubs -->
+        <!-- add club -->
         <section>
-            <div class="club-container">
-                <a href="club.html">
-                    <div class="row align-self-center club-img-cont">
-                        <h4 class="club-img-title">Swimming clubs</h4>
-                        <img id="club-img" src="img/club.jpg" alt="swimming club team">
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- add form -->
-        <section>
-            <form id="add-form" class="add-form">
-                <h2>Add a swimming place</h2>
+            <form id="club-form" class="add-form">
+                <h2>Add a club</h2>
                 <br>
                 <div class="form-group">
-                    <label for="add-name">Swimming place name</label>
-                    <input type="name" name="name" class="form-control" id="add-name" aria-describedby="nameHelp"
-                        placeholder="Place name..">
+                    <label for="add-club-name">Club name</label>
+                    <input type="name" name="name" class="form-control" id="add-club-name" aria-describedby="nameHelp"
+                        placeholder="Club name..">
                 </div>
                 <br>
-                <div class="form-group">
-                    <label for="add-postcode">Location postcode</label>
-                    <input type="postcode" name="postcode" class="form-control" id="add-postcode"
-                        placeholder="Postcode..">
-                </div>
-                <br>
-                <button type="submit" id="add-btn" class="btn btn-outline-primary add-btn">Add swimming
-                    place</button>
+                <button type="submit" id="add-btn" class="btn btn-outline-primary add-btn">Add club</button>
             </form>
         </section>
 
-        <!-- articles list -->
+        <!-- club list -->
         <section>
-            <div id="render">
-                <!-- Places list goes here -->
-            </div>
+            <div id="render-club"></div>
         </section>
 
         <!-- update modal -->
