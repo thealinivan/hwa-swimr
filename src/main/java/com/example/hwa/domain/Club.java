@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Club {
@@ -15,7 +17,8 @@ public class Club {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
-	@OneToMany(mappedBy = "clubs")
+	@OneToMany(mappedBy = "club")
+	@JsonIgnore
 	private List<Place> places;
 	
 	public Club() {};

@@ -51,6 +51,12 @@ public class Place {
 	public void setPostcode(String postcode) {
 		this.postcode = postcode;
 	}
+	public Club getClub() {
+		return club;
+	}
+	public void setClub(Club club) {
+		this.club = club;
+	}
 
 	@Override
 	public int hashCode() {
