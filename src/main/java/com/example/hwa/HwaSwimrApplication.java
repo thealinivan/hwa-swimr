@@ -8,7 +8,7 @@ public class HwaSwimrApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HwaSwimrApplication.class, args);
-		System.out.println("Hello");
+		System.out.println("Swimr running");
 	}
 
 }
