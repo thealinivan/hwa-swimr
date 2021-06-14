@@ -46,7 +46,15 @@ const places = [
 ];
 
 //Create place fetch
-//...
+function createPlace(place) {
+    axios.post("/places/create", place)
+        .then(res => {
+            //readAllPlaces();
+            renderPlace(place);
+            this.reset();
+            this.make.focus();
+        }).catch(err => console.log(err));
+}
 
 //Read place fetch
 //...
@@ -163,8 +171,8 @@ $(window).bind("load", function () {
     $("#add-form").submit((event) => {
         event.preventDefault();
         const addedPlace = getDataFromAddForm();
-        console.log(addedPlace);
-        renderPlace(addedPlace);
+        createPlace(addedPlace);
+
     })
 
     //Read places
