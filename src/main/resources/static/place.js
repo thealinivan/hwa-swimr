@@ -34,7 +34,7 @@ const places = [];
 
 //API - read all
 const getPlaces = async () => {
-    const res = await axios.get(`/clubs//read/${currentClubId}`);
+    const res = await axios.get(`/clubs/read/${currentClubId}`);
     output.innerHTML = "";
     console.log(res.data);
     document.getElementById("place-title").innerHTML = res.data.name;
