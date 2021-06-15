@@ -51,4 +51,10 @@ public class ClubController {
 		return this.service.deleteClub(id);
 	}	
 	
+	//read by id
+	@GetMapping("/read/{id}")
+	public ClubDTO readById(@PathVariable int id) {
+		return this.service.readById(id);
+	}
+	
 }

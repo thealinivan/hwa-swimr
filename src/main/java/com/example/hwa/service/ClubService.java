@@ -51,6 +51,12 @@ public class ClubService {
 		this.repo.deleteById(id);
 		return !this.repo.existsById(id);
 	}
+
+	//read by id
+	public ClubDTO readById(int id) {
+		Club club = this.repo.findById(id).orElseThrow(() -> new EntityNotFoundException()); 
+		return this.mapper.mapToDTO(club);
+	}
 	
 
 	
