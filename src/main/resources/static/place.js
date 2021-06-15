@@ -29,6 +29,10 @@ function getMap(POSTCODE, TARGET) {
 
 //state
 const currentClubId = 1;
+const currentClub = {
+    "id": 1,
+    "name": "Birch Shark Outdoor Swimming Club"
+}
 const output = document.getElementById("render");
 const places = [];
 
@@ -38,7 +42,7 @@ const getPlaces = async () => {
     output.innerHTML = "";
     console.log(res.data);
     document.getElementById("place-title").innerHTML = res.data.name;
-    res.data.places.forEach(place => {
+    res.data.places.reverse().forEach(place => {
         places.push(place);
         renderPlace(place);
     })
@@ -129,10 +133,23 @@ $(document).ready(function () {
     document.getElementById('btn-update').addEventListener('show.bs.modal', function (event) {
         let id = $(event.relatedTarget).data('id');
         places.forEach(place => {
-            if (place.id = id) {
-                document.getElementById("update-name").innerHTML = place.name;
-                document.getElementById("update-postcode").innerHTML = place.postcode;
+            if (place.id === id) {
+                document.getElementById("update-name").value = place.name;
+                document.getElementById("update-postcode").value = place.postcode;
             }
+        })
+        document.getElementById("update-form").addEventListener('submit', function (event) {
+            event.preventDefault();
+            const data = {
+                name: this.name.value,
+                postcode: this.postcode.value
+            }
+            axios.put(`/places/update/${id}`, data)
+                .then(res => {
+                    getPlaces();
+                    this.reset();
+                    $('#btn-update').modal('hide');
+                }).catch(err => console.log(err));
         })
     })
 
