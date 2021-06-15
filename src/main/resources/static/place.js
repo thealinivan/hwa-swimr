@@ -131,7 +131,6 @@ $(document).ready(function () {
             postcode: this.postcode.value,
             club: currentClub
         }
-
         axios.post("/places/create", data)
             .then(res => {
                 getPlaces();
