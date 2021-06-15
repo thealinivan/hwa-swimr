@@ -50,6 +50,16 @@ const deleteClub = async (id) => {
     getClubs();
 };
 
+//search
+const search = () => {
+    output.innerHTML = "";
+    let filtered = clubs.filter(club => club.name.toLowerCase()
+        .includes($('#field-search').val().toLowerCase()));
+    filtered.forEach(club => {
+        renderClub(club);
+    })
+}
+
 //on DOM ready
 $(document).ready(function () {
 
@@ -92,6 +102,19 @@ $(document).ready(function () {
                     $('#btn-update-club').modal('hide');
                 }).catch(err => console.log(err));
         })
+    })
+
+    //search place on keyup
+    document.getElementById('field-search').addEventListener('keyup', (event) => {
+        event.preventDefault();
+        console.log("keyup");
+        search();
+    })
+
+    //search place on search button click
+    document.getElementById("btn-search").addEventListener('click', (event) => {
+        event.preventDefault();
+        search();
     })
 
 });
