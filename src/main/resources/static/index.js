@@ -3,7 +3,8 @@
 //state
 const places = [];
 const output = document.getElementById("render-club");
-//get clubs
+
+//API - read all
 const getClubs = async () => {
     const res = await axios.get("/clubs/readAll");
     output.innerHTML = "";

@@ -1,14 +1,5 @@
 'use strict';
 
-//Get data from local storage or other means to access the current club object
-const currentClub = {
-    id: 1,
-    name: "Birch Shark Outdoor Swimming Club"
-}
-$(document).ready(function () {
-    document.getElementById("place-title").innerHTML = currentClub.name;
-});
-
 //Maps API
 function getMap(POSTCODE, TARGET) {
     const POSTCODES_URL = "https://api.postcodes.io/postcodes/"
@@ -36,13 +27,21 @@ function getMap(POSTCODE, TARGET) {
         })
 }
 
+//state
+const currentClubId = 1;
 const output = document.getElementById("render");
+const places = [];
 
-
+//API - read all
 const getPlaces = async () => {
-    const res = await axios.get("/places/readAll");
+    const res = await axios.get(`/clubs//read/${currentClubId}`);
     output.innerHTML = "";
-    res.data.reverse().forEach(place => renderPlace(place));
+    console.log(res.data);
+    document.getElementById("place-title").innerHTML = res.data.name;
+    res.data.places.forEach(place => {
+        places.push(place);
+        renderPlace(place);
+    })
 }
 
 const renderPlace = (place) => {
@@ -98,39 +97,43 @@ const renderPlace = (place) => {
     getMap(place.postcode, document.getElementById(`map-${place.id}`));
 }
 
-getPlaces();
-
-
-document.getElementById("add-form").addEventListener("submit", function (event) {
-    event.preventDefault();
-    const data = {
-        name: this.name.value,
-        postcode: this.postcode.value,
-        club: currentClub
-    }
-
-    axios.post("/places/create", data)
-        .then(res => {
-            getPlaces();
-            this.reset();
-        }).catch(err => console.log(err));
-});
-
+//delete a place
 const deletePlace = async (id) => {
     const res = await axios.delete(`/places/delete/${id}`);
     getPlaces();
 };
 
-document.getElementById('btn-update').addEventListener('show.bs.modal', function (event) {
-    let id = $(event.relatedTarget).data('id');
-    places.forEach(place => {
-        if (place.id = id) {
-            document.getElementById("update-name").innerHTML = place.name;
-            document.getElementById("update-postcode").innerHTML = place.postcode;
+//on DOM ready
+$(document).ready(function () {
+
+    //render all places for the current club
+    getPlaces();
+
+    //create a place
+    document.getElementById("add-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+        const data = {
+            name: this.name.value,
+            postcode: this.postcode.value,
+            club: currentClub
         }
+
+        axios.post("/places/create", data)
+            .then(res => {
+                getPlaces();
+                this.reset();
+            }).catch(err => console.log(err));
+    });
+
+    //update a place
+    document.getElementById('btn-update').addEventListener('show.bs.modal', function (event) {
+        let id = $(event.relatedTarget).data('id');
+        places.forEach(place => {
+            if (place.id = id) {
+                document.getElementById("update-name").innerHTML = place.name;
+                document.getElementById("update-postcode").innerHTML = place.postcode;
+            }
+        })
     })
-    //get modal field and populate from places obj array using id
 
-})
-
-
+});
