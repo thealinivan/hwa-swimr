@@ -11,6 +11,7 @@ import com.example.hwa.domain.Club;
 import com.example.hwa.dto.ClubDTO;
 import com.example.hwa.repo.ClubRepo;
 import com.example.hwa.utils.ClubMapper;
+import java.util.Optional;
 
 @Service
 public class ClubService {
@@ -50,6 +51,12 @@ public class ClubService {
 	public boolean deleteClub(int id) {
 		this.repo.deleteById(id);
 		return !this.repo.existsById(id);
+	}
+
+	//read by id
+	public ClubDTO readById(int id) {
+		Club club = this.repo.findById(id).orElseThrow(() -> new EntityNotFoundException()); 
+		return this.mapper.mapToDTO(club);
 	}
 	
 
