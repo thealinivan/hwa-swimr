@@ -1,13 +1,19 @@
 'use strict';
 
+//state
+const places = [];
 const output = document.getElementById("render-club");
-
+//get clubs
 const getClubs = async () => {
     const res = await axios.get("/clubs/readAll");
     output.innerHTML = "";
-    res.data.reverse().forEach(club => renderClub(club));
+    res.data.reverse().forEach(club => {
+        places.push(club);
+        renderClub(club)
+    });
 }
 
+//render a club
 const renderClub = (club) => {
 
 
@@ -37,34 +43,60 @@ const renderClub = (club) => {
     $('#render-club').append(card);
 }
 
-getClubs();
-
-document.getElementById("club-form").addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const data = {
-        name: this.name.value
-    }
-
-    axios.post("/clubs/create", data)
-        .then(res => {
-            getClubs();
-            this.reset();
-        }).catch(err => console.log(err));
-    window.location.reload();
-});
-
+//delete a club
 const deleteClub = async (id) => {
     const res = await axios.delete(`/clubs/delete/${id}`);
     getClubs();
 };
 
-document.getElementById('btn-update-club').addEventListener('show.bs.modal', function (event) {
-    let id = $(event.relatedTarget).data('id');
-    console.log(id);
-    //get modal field and populate from places obj array using id
-})
+//on DOM ready
+$(document).ready(function () {
 
-document.getElementById("card-name").addEventListener('click', () => {
-    //local storage or other method to send the id to place.html
+    //render all clubs
+    getClubs();
+
+    //create a club
+    document.getElementById("club-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const data = {
+            name: this.name.value
+        }
+
+        axios.post("/clubs/create", data)
+            .then(res => {
+                getClubs();
+                this.reset();
+            }).catch(err => console.log(err));
+        window.location.reload();
+    });
+
+    //update a club
+    document.getElementById('btn-update-club').addEventListener('show.bs.modal', function (event) {
+        let id = $(event.relatedTarget).data('id');
+        places.forEach(place => {
+            if (place.id === id) {
+                document.getElementById("update-club-name").value = place.name;
+            }
+        })
+        document.getElementById("update-form").addEventListener('submit', function (event) {
+            event.preventDefault();
+            console.log("update fin: cliked")
+            const data = {
+                name: this.name.value
+            }
+            console.log(data.name);
+            axios.put(`/clubs/update/${id}`, data)
+                .then(res => {
+                    getClubs();
+                    this.reset();
+                }).catch(err => console.log(err));
+        })
+    })
+
+    //navigate to club details
+    // document.getElementById("card-name").addEventListener('click', () => {
+    //     //local storage or other method to send the id to place.html
+    // });
+
 });

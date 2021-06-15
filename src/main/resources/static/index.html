@@ -32,7 +32,7 @@
                     <img class="logo-img" src="img/logo_small1.png" alt="marketplace logo">
                 </a>
                 <form class="d-flex">
-                    <input class="form-control me-2 search-field" type="search" placeholder="Search places.."
+                    <input class="form-control me-2 search-field" type="search" placeholder="Search clubs.."
                         aria-label="Search" id="field-search">
                     <button class="btn btn-outline-primary" type="submit" id="btn-search">Search</button>
                 </form>
@@ -103,14 +103,14 @@
                             <form id="update-form" class="update-form">
                                 <div class="form-group">
                                     <label for="update-club-name">Club name</label>
-                                    <input type="name" class="form-control" id="update-club-name"
+                                    <input type="name" name="name" class="form-control" id="update-club-name"
                                         aria-describedby="nameHelp" placeholder="Club name..">
                                 </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-outline-primary" id="update-btn">Save
+                                        changes</button>
+                                </div>
                             </form>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-primary" id="update-btn">Save changes</button>
                         </div>
                     </div>
                 </div>
