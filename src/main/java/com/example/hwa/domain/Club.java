@@ -1,5 +1,6 @@
 package com.example.hwa.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,8 +19,7 @@ public class Club {
 	private Integer id;
 	private String name;
 	@OneToMany(mappedBy = "club")
-	@JsonIgnore
-	private List<Place> places;
+	private List<Place> places = new ArrayList<>();
 	
 	public Club() {};
 	

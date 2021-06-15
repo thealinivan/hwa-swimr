@@ -69,7 +69,7 @@ $(document).ready(function () {
                 getClubs();
                 this.reset();
             }).catch(err => console.log(err));
-        window.location.reload();
+        // window.location.reload();
     });
 
     //update a club
