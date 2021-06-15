@@ -21,10 +21,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="index.js" async></script>
-    <!-- Google maps API -->
-    <script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUfUckWghbs-wyuV-KNPODMAQcog4qA28&callback=initMap">
-        </script>
 </head>
 
 <body>
@@ -92,36 +88,29 @@
             <div id="render-club"></div>
         </section>
 
-        <!-- update modal -->
+        <!-- modal -->
         <section>
 
-            <div class="modal" id="btn-update" tabindex="-1">
+            <div class="modal" id="btn-update-club" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Update swimming place</h5>
+                            <h5 class="modal-title">Update Club</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
 
                             <form id="update-form" class="update-form">
                                 <div class="form-group">
-                                    <label for="update-name">Swimming place name</label>
-                                    <input type="name" class="form-control" id="update-name" aria-describedby="nameHelp"
-                                        placeholder="Place name">
+                                    <label for="update-club-name">Club name</label>
+                                    <input type="name" class="form-control" id="update-club-name"
+                                        aria-describedby="nameHelp" placeholder="Club name..">
                                 </div>
-                                <br>
-                                <div class="form-group">
-                                    <label for="update-postcode">Location postcode</label>
-                                    <input type="postcode" class="form-control" id="update-postcode"
-                                        placeholder="Postcode">
-                                </div>
-                                <br>
                             </form>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-outline-primary" id="update-btn">Save changes</button>
+                            <button type="button" class="btn btn-outline-primary" id="update-btn">Save changes</button>
                         </div>
                     </div>
                 </div>
@@ -129,7 +118,6 @@
 
         </section>
 
-        </section>
 
     </main>
 

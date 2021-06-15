@@ -56,7 +56,6 @@ h2{
 }
 
 
-
 /* carousel */
 
 .d-block{
@@ -68,6 +67,10 @@ height: 400px;
 /* render */
 h3{
     padding: .3rem;
+    cursor:pointer;
+}
+h3:hover{
+    color: #248de2;
 }
 .card-el-icon{
     max-width: 40px;
@@ -132,6 +135,9 @@ h3{
     font-size: 2rem;
     margin-top:10%;
 }
+.title-section{
+    margin:20px;
+}
 #club-img{
 object-fit: center;
 z-index:-1;
@@ -191,7 +197,7 @@ cursor:pointer;
 a{
     text-decoration:none;
 }
- */
+
 
 
 
