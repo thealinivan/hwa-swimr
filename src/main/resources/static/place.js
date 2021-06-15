@@ -107,6 +107,16 @@ const deletePlace = async (id) => {
     getPlaces();
 };
 
+//search
+const search = () => {
+    output.innerHTML = "";
+    let filtered = places.filter(place => place.name.toLowerCase()
+        .includes($('#field-search').val().toLowerCase()));
+    filtered.forEach(place => {
+        renderPlace(place);
+    })
+}
+
 //on DOM ready
 $(document).ready(function () {
 
@@ -121,7 +131,6 @@ $(document).ready(function () {
             postcode: this.postcode.value,
             club: currentClub
         }
-
         axios.post("/places/create", data)
             .then(res => {
                 getPlaces();
@@ -153,16 +162,18 @@ $(document).ready(function () {
         })
     })
 
-    //search place
-    // document.getElementById('field-search').addEventListener('keyup', () => {
-    //     event.preventDefault();
-    //     output.innerHTML = "";
-    //     let filtered = places.filter(place => {
-    //         place.name.includes($('#field-search').val());
-    //     })
-    //     filtered.forEach(place => {
-    //         renderPlace(place);
-    //     })
-    // })
+    //search place on keyup
+    document.getElementById('field-search').addEventListener('keyup', (event) => {
+        event.preventDefault();
+        search();
+    })
+
+    //search place on search button click
+    document.getElementById("btn-search").addEventListener('click', (event) => {
+        event.preventDefault();
+        search();
+    })
 
 });
+
+
