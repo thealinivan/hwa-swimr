@@ -1,7 +1,7 @@
 'use strict';
 
 //state
-const places = [];
+const clubs = [];
 const output = document.getElementById("render-club");
 
 //API - read all
@@ -9,7 +9,7 @@ const getClubs = async () => {
     const res = await axios.get("/clubs/readAll");
     output.innerHTML = "";
     res.data.reverse().forEach(club => {
-        places.push(club);
+        clubs.push(club);
         renderClub(club)
     });
 }
@@ -80,22 +80,21 @@ $(document).ready(function () {
     //update a club
     document.getElementById('btn-update-club').addEventListener('show.bs.modal', function (event) {
         let id = $(event.relatedTarget).data('id');
-        places.forEach(place => {
-            if (place.id === id) {
-                document.getElementById("update-club-name").value = place.name;
+        clubs.forEach(club => {
+            if (club.id === id) {
+                document.getElementById("update-club-name").value = club.name;
             }
         })
         document.getElementById("update-form").addEventListener('submit', function (event) {
             event.preventDefault();
-            console.log("update fin: cliked")
             const data = {
                 name: this.name.value
             }
-            console.log(data.name);
             axios.put(`/clubs/update/${id}`, data)
                 .then(res => {
                     getClubs();
                     this.reset();
+                    $('#btn-update-club').modal('hide');
                 }).catch(err => console.log(err));
         })
     })
