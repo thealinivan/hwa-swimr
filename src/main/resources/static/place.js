@@ -28,11 +28,8 @@ function getMap(POSTCODE, TARGET) {
 }
 
 //state
-const currentClubId = 1;
-const currentClub = {
-    "id": 1,
-    "name": "Birch Shark Outdoor Swimming Club"
-}
+const currentClubId = new URLSearchParams(window.location.search).get("id");
+let currentClub = {};
 const output = document.getElementById("render");
 const places = [];
 
@@ -40,7 +37,10 @@ const places = [];
 const getPlaces = async () => {
     const res = await axios.get(`/clubs/read/${currentClubId}`);
     output.innerHTML = "";
-    console.log(res.data);
+    currentClub = {
+        id: res.data.id,
+        name: res.data.name
+    }
     document.getElementById("place-title").innerHTML = res.data.name;
     res.data.places.reverse().forEach(place => {
         places.push(place);
@@ -152,5 +152,17 @@ $(document).ready(function () {
                 }).catch(err => console.log(err));
         })
     })
+
+    //search place
+    // document.getElementById('field-search').addEventListener('keyup', () => {
+    //     event.preventDefault();
+    //     output.innerHTML = "";
+    //     let filtered = places.filter(place => {
+    //         place.name.includes($('#field-search').val());
+    //     })
+    //     filtered.forEach(place => {
+    //         renderPlace(place);
+    //     })
+    // })
 
 });

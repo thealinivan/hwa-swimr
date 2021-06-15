@@ -22,7 +22,7 @@ const renderClub = (club) => {
             <div class="card-container">
                 <div class="row align-self-center">
                     <div class="col-sm-12 col-md-9 col-lg-10 ">
-                        <a onClick="getClubID(${club.id})" href="./place.html">
+                        <a href="./place.html?id=${club.id}">
                             <h3 id="card-name">${club.name}</h3>
                         </a>
                     </div>
@@ -49,11 +49,6 @@ const deleteClub = async (id) => {
     const res = await axios.delete(`/clubs/delete/${id}`);
     getClubs();
 };
-
-//get club id in local storage
-const getClubId = id => {
-    //pass current club id to places...
-}
 
 //on DOM ready
 $(document).ready(function () {
