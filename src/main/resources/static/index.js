@@ -14,6 +14,7 @@ const getClubs = async () => {
     });
 }
 
+//count places for a club
 const clubPlaces = (club) => {
     let count = 0;
     for (const place of club.places) {

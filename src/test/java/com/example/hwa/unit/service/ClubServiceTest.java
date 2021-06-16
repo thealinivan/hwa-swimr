@@ -13,7 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.example.hwa.domain.Club;
-import com.example.hwa.domain.Place;
+import com.example.hwa.dto.ClubDTO;
 import com.example.hwa.repo.ClubRepo;
 import com.example.hwa.repo.PlaceRepo;
 import com.example.hwa.service.ClubService;
@@ -31,60 +31,70 @@ public class ClubServiceTest {
 		
 	//create
 	@Test
-	void testCreate() {
+	void testCreateClub() {
 		//GIVEN
-		Club club = new Club("Team Birch");
+		Club actual = new Club("Team Birch");
+		Club saved = new Club(2, "Team Birch");
+		ClubDTO savedClubDTO = new ClubDTO(2, "Team Birch");
 		//WHEN
-		Mockito.when(this.repo.save(club)).thenReturn(club);
+		Mockito.when(this.repo.save(actual)).thenReturn(saved);
 		//THEN
-		assertThat(this.service.createClub(club)).isEqualTo(club);
-		Mockito.verify(this.repo, Mockito.times(1)).save(club);
+		assertThat(this.service.createClub(actual)).isEqualTo(savedClubDTO);
+		
 	}
 		
 	//read
 	@Test
-	void testReadAll() {
+	void testReadClubs() {
 		//GIVEN
-		Club club = new Club("Team Birch");
-        List<Club> clubs = List.of(club);
+		Club actual= new Club(1, "Team Birch");
+        List<Club> clubs = List.of(actual);
+        ClubDTO currentClubDTO = new ClubDTO(1, "Team Birch");
+        List<ClubDTO> clubsDTOs = List.of(currentClubDTO);
 		//WHEN
-		Mockito.when(this.repo.save(club)).thenReturn(club);
 		Mockito.when(this.repo.findAll()).thenReturn(clubs);
 		//THEN
-		assertThat(this.service.readClubs()).isEqualTo(clubs);
-		Mockito.verify(this.repo, Mockito.times(1)).save(club);
-		Mockito.verify(this.repo, Mockito.times(1)).findAll();
+		assertThat(this.service.readClubs()).isEqualTo(clubsDTOs);
 	
 	}
 	
 	//update
 	@Test
-	void testUpdate() {
+	void testUpdateClub() {
 		//GIVEN
-		Integer testId = 1;
-		Club testData = new Club("Team Birch");
+		Integer actualId = 1;
+		Club actual = new Club("Team Birch");
 		Club currentClub = new Club(1, "Team Birch");
-		Club updatedClub = new Club(testId, "Team Birch");
+		Club updatedClub = new Club(actualId, "Team Birch");
+		ClubDTO updatedClubDTO = new ClubDTO(actualId, "Team Birch");
 		//WHEN
-		Mockito.when(this.repo.findById(testId)).thenReturn(Optional.of(currentClub));
+		Mockito.when(this.repo.findById(actualId)).thenReturn(Optional.of(currentClub));
 		Mockito.when(this.repo.save(updatedClub)).thenReturn(updatedClub);
 		//THEN
-		assertThat(this.service.updateClub(testId, testData)).isEqualTo(updatedClub);
-		
-		Mockito.verify(this.repo, Mockito.times(1)).findById(testId);
-		Mockito.verify(this.repo, Mockito.times(1)).save(updatedClub);
+		assertThat(this.service.updateClub(actualId, actual)).isEqualTo(updatedClubDTO);
 	}
 	
 	//delete
 	@Test
-	void testDelete() {
+	void testDeleteClub() {
 		//GIVEN
-		Integer testId = 1;
+		Integer actualId = 1;
 		//WHEN
-		Mockito.when(this.repo.existsById(testId)).thenReturn(false);
+		Mockito.when(this.repo.existsById(actualId)).thenReturn(false);
 		//THEN
-		assertThat(this.service.deleteClub(testId)).isEqualTo(!false);
+		assertThat(this.service.deleteClub(actualId)).isEqualTo(!false);
+	}
 	
-		Mockito.verify(this.repo, Mockito.times(1)).existsById(testId);
+	//read by id
+	@Test
+	void testReadById() {
+		//GIVEN
+		Integer actualId = 1;
+		Club actual = new Club("Team Birch");
+		ClubDTO clubDTO = new ClubDTO(1, "Team Birch");
+		//WHEN
+		Mockito.when(this.repo.findById(1)).thenReturn(Optional.of(actual));
+		//THEN
+		assertThat(this.service.readById(1)).isEqualTo(clubDTO);
 	}
 }

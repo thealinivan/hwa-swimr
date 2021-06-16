@@ -43,7 +43,7 @@ public class PlaceIntegrationTest {
 	
 	//create
 	@Test
-	void testCreate() throws Exception {
+	void testCreatePlace() throws Exception {
 		Place testPlace = new Place("Leytonstone Pool", "E11 3DW");
 		String testPlaceAsJSON = this.mapper.writeValueAsString(testPlace);
 		Place savedPlace = new Place(2, "Leytonstone Pool", "E11 3DW");
@@ -57,7 +57,7 @@ public class PlaceIntegrationTest {
 	
 	//read
 	@Test
-	void testRead() throws Exception {
+	void testReadPlaces() throws Exception {
 		Place testPlace = new Place(1, "Hackney Pool", "E12 6LB");
 		List<Place> places = List.of(testPlace);
 		String testPlaceAsJSONArray = this.mapper.writeValueAsString(places);
@@ -69,7 +69,7 @@ public class PlaceIntegrationTest {
 	
 	//update
 	@Test
-	void testUpdate() throws Exception {
+	void testUpdatePlace() throws Exception {
 		Place updatePlace = new Place(1, "Leytonstone Pool", "E12 6LB");
 		String updatePlaceAsJSON = this.mapper.writeValueAsString(updatePlace);
 		this.mvc.perform(put("/places/update/1"))
@@ -79,7 +79,7 @@ public class PlaceIntegrationTest {
 	
 	//delete
 	@Test
-	void testDelete() throws Exception {
+	void testDeletePlace() throws Exception {
 		assertThat(repo.existsById(1));
 		this.mvc.perform(delete("/places/delete/1")).andExpect(status().isOk());
 		assertThat(!(repo.existsById(1)));

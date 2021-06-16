@@ -44,7 +44,7 @@ public class ClubIntegrationTest {
 	
 	//create
 	@Test
-	void testCreate() throws Exception {
+	void testCreateClub() throws Exception {
 		Club testClub = new Club("The Birch Team");
 		String testClubAsJSON = this.mapper.writeValueAsString(testClub);
 		Club savedClub = new Club(2, "The Birch Team");
@@ -57,7 +57,7 @@ public class ClubIntegrationTest {
 	
 	//read
 	@Test
-	void testRead() throws Exception {
+	void testReadClubs() throws Exception {
 		Club testClub = new Club(1, "Team Birch");
 		List<Club> clubs = List.of(testClub);
 		String testClubAsJSONArray = this.mapper.writeValueAsString(clubs);
@@ -68,7 +68,7 @@ public class ClubIntegrationTest {
 	
 	//update
 	@Test
-	void testUpdate() throws Exception {
+	void testUpdateClub() throws Exception {
 		Club updateClub = new Club(1, "Team Elm");
 		String updateClubAsJSON = this.mapper.writeValueAsString(updateClub);
 		this.mvc.perform(put("/clubs/update/1"))
@@ -78,7 +78,7 @@ public class ClubIntegrationTest {
 	
 	//delete
 	@Test
-	void testDelete() throws Exception {
+	void testDeleteClub() throws Exception {
 		assertThat(repo.existsById(1));
 		this.mvc.perform(delete("/clubs/delete/1")).andExpect(status().isOk());
 		assertThat(!(repo.existsById(1)));

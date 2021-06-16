@@ -12,7 +12,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 
+import com.example.hwa.domain.Club;
 import com.example.hwa.domain.Place;
+import com.example.hwa.dto.PlaceDTO;
 import com.example.hwa.repo.PlaceRepo;
 import com.example.hwa.service.PlaceService;
 
@@ -27,61 +29,59 @@ public class PlaceServiceTest {
 		
 	//create
 	@Test
-	void testCreate() {
+	void testCreatePlace() {
 		//GIVEN
-		Place place = new Place("Hackney Pool", "E12 6LB");
+		Place actual = new Place("Hackney Pool", "E12 6LB");
+		Place saved = new Place(2, "Hackney Pool", "E12 6LB");
+		PlaceDTO savedPlaceDTO = new PlaceDTO(2, "Hackney Pool", "E12 6LB");
 		//WHEN
-		Mockito.when(this.repo.save(place)).thenReturn(place);
+		Mockito.when(this.repo.save(actual)).thenReturn(saved);
 		//THEN
-		assertThat(this.service.createPlace(place)).isEqualTo(place);
-		Mockito.verify(this.repo, Mockito.times(1)).save(place);
+		assertThat(this.service.createPlace(actual)).isEqualTo(savedPlaceDTO);
 	}
 		
 	//read
 	@Test
-	void testReadAll() {
+	void testReadPlaces() {
 		//GIVEN
-		Place place = new Place("Hackney Pool", "E12 6LB");
-        List<Place> places = List.of(place);
+		Place currentPlace = new Place(1, "Hackney Pool", "E12 6LB");
+		List<Place> places = List.of(currentPlace);
+		PlaceDTO currentPlaceDTO = new PlaceDTO(1, "Hackney Pool", "E12 6LB");
+        List<PlaceDTO> placesDTOs = List.of(currentPlaceDTO);
 		//WHEN
-		Mockito.when(this.repo.save(place)).thenReturn(place);
 		Mockito.when(this.repo.findAll()).thenReturn(places);
 		//THEN
-		assertThat(this.service.readPlaces()).isEqualTo(places);
-		Mockito.verify(this.repo, Mockito.times(1)).save(place);
-		Mockito.verify(this.repo, Mockito.times(1)).findAll();
-	
+		assertThat(this.service.readPlaces()).isEqualTo(placesDTOs);
 	}
 	
 	//update
 	@Test
-	void testUpdate() {
+	void testUpdatePlace() {
 		//GIVEN
-		Integer testId = 1;
-		Place testData = new Place("Eastham Pool", "E12 6LB");
+		Integer actualId = 1;
+		Place actual = new Place("Eastham Pool", "E12 6LB");
 		Place currentPlace = new Place(1, "Hackney Pool", "E12 6LB");
-		Place updatedPlace = new Place(testId, "Eastham Pool", "E11 3DW");
+		Place updatedPlace = new Place(actualId, "Eastham Pool", "E11 3DW");
+		PlaceDTO updatedPlaceDTO = new PlaceDTO(actualId, "Eastham Pool", "E11 3DW");
 		//WHEN
-		Mockito.when(this.repo.findById(testId)).thenReturn(Optional.of(currentPlace));
+		Mockito.when(this.repo.findById(actualId)).thenReturn(Optional.of(currentPlace));
 		Mockito.when(this.repo.save(updatedPlace)).thenReturn(updatedPlace);
 		//THEN
-		assertThat(this.service.updatePlace(testId, testData)).isEqualTo(updatedPlace);
-		
-		Mockito.verify(this.repo, Mockito.times(1)).findById(testId);
+		assertThat(this.service.updatePlace(actualId, actual)).isEqualTo(updatedPlaceDTO);
+		//might not need verification
+		Mockito.verify(this.repo, Mockito.times(1)).findById(actualId);
 		Mockito.verify(this.repo, Mockito.times(1)).save(updatedPlace);
 	}
 	
 	//delete
 	@Test
-	void testDelete() {
+	void testDeletePlace() {
 		//GIVEN
-		Integer testId = 1;
+		Integer actualId = 1;
 		//WHEN
-		Mockito.when(this.repo.existsById(testId)).thenReturn(false);
+		Mockito.when(this.repo.existsById(actualId)).thenReturn(false);
 		//THEN
-		assertThat(this.service.deletePlace(testId)).isEqualTo(!false);
-	
-		Mockito.verify(this.repo, Mockito.times(1)).existsById(testId);
+		assertThat(this.service.deletePlace(actualId)).isEqualTo(!false);
 	}
 
 }
