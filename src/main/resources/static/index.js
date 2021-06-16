@@ -14,6 +14,14 @@ const getClubs = async () => {
     });
 }
 
+const clubPlaces = (club) => {
+    let count = 0;
+    for (const place of club.places) {
+        count++;
+    }
+    return count;
+}
+
 //render a club
 const renderClub = (club) => {
 
@@ -24,6 +32,7 @@ const renderClub = (club) => {
                     <div class="col-sm-12 col-md-9 col-lg-10 ">
                         <a href="./place.html?id=${club.id}">
                             <h3 id="card-name">${club.name}</h3>
+                            <p>Swimmming places: <b>${clubPlaces(club)}</b></p>
                         </a>
                     </div>
                     <div class="col-sm-12 col-md-3 col-lg-2 text-center">
