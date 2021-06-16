@@ -23,6 +23,7 @@ import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 
 import com.example.hwa.domain.Club;
 import com.example.hwa.domain.Place;
+import com.example.hwa.dto.ClubDTO;
 import com.example.hwa.repo.ClubRepo;
 import com.example.hwa.repo.PlaceRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -69,11 +70,14 @@ public class ClubIntegrationTest {
 	//update
 	@Test
 	void testUpdateClub() throws Exception {
-		Club updateClub = new Club(1, "Team Elm");
-		String updateClubAsJSON = this.mapper.writeValueAsString(updateClub);
-		this.mvc.perform(put("/clubs/update/1"))
+		Club actual = new Club(1, "Team Elm");
+		String actualClubAsJSON = this.mapper.writeValueAsString(actual);
+		ClubDTO updatedClubDTO = new ClubDTO(1, "Team Elm");
+		String updatedClubAsJSON = this.mapper.writeValueAsString(updatedClubDTO);
+		this.mvc.perform(post("/clubs/create").content(updatedClubAsJSON)
+				.contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
-		.andExpect(content().json(updateClubAsJSON));
+		.andExpect(content().json(actualClubAsJSON));
 	}
 	
 	//delete
@@ -89,8 +93,12 @@ public class ClubIntegrationTest {
 	void testReadByID() throws Exception {
 		Club testClub = new Club(1, "Team Birch");
 		String testClubAsJSONArray = this.mapper.writeValueAsString(testClub);
-		this.mvc.perform(get("/clubs/readAll/1"))
+		this.mvc.perform(get("/clubs/readById/1"))
 		.andExpect(status().isOk())
 		.andExpect(content().json(testClubAsJSONArray));
 	}
 }
+
+
+
+

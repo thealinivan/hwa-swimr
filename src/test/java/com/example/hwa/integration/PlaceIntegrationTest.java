@@ -1,3 +1,5 @@
+
+
 package com.example.hwa.integration;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -7,7 +9,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+import org.springframework.test.web.servlet.RequestBuilder;
 import java.util.List;
 
 import org.springframework.http.MediaType;
@@ -23,6 +25,7 @@ import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 
 
 import com.example.hwa.domain.Place;
+import com.example.hwa.dto.PlaceDTO;
 import com.example.hwa.repo.PlaceRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -46,8 +49,8 @@ public class PlaceIntegrationTest {
 	void testCreatePlace() throws Exception {
 		Place testPlace = new Place("Leytonstone Pool", "E11 3DW");
 		String testPlaceAsJSON = this.mapper.writeValueAsString(testPlace);
-		Place savedPlace = new Place(2, "Leytonstone Pool", "E11 3DW");
-		String savedPlaceAsJSON = this.mapper.writeValueAsString(savedPlace);
+		PlaceDTO savedPlaceDTO = new PlaceDTO(2, "Leytonstone Pool", "E11 3DW");
+		String savedPlaceAsJSON = this.mapper.writeValueAsString(savedPlaceDTO);
 		this.mvc.perform(post("/places/create").content(testPlaceAsJSON)
 				.contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
@@ -58,9 +61,9 @@ public class PlaceIntegrationTest {
 	//read
 	@Test
 	void testReadPlaces() throws Exception {
-		Place testPlace = new Place(1, "Hackney Pool", "E12 6LB");
-		List<Place> places = List.of(testPlace);
-		String testPlaceAsJSONArray = this.mapper.writeValueAsString(places);
+		PlaceDTO testPlaceDTO = new PlaceDTO(1, "Hackney Pool", "E12 6LB");
+		List<PlaceDTO> placesDTOs = List.of(testPlaceDTO);
+		String testPlaceAsJSONArray = this.mapper.writeValueAsString(placesDTOs);
 		this.mvc.perform(get("/places/readAll"))
 		.andExpect(status().isOk())
 		.andExpect(content().json(testPlaceAsJSONArray));
@@ -70,11 +73,14 @@ public class PlaceIntegrationTest {
 	//update
 	@Test
 	void testUpdatePlace() throws Exception {
-		Place updatePlace = new Place(1, "Leytonstone Pool", "E12 6LB");
-		String updatePlaceAsJSON = this.mapper.writeValueAsString(updatePlace);
-		this.mvc.perform(put("/places/update/1"))
+		Place testPlace = new Place(1, "Leytonstone Pool", "E12 6LB");
+		String testPlaceAsJSON = this.mapper.writeValueAsString(testPlace);
+		Place updatedPlaceDTO = new Place(1, "Leytonstone Pool", "E12 6LB");
+		String updatedPlaceAsJSON = this.mapper.writeValueAsString(updatedPlaceDTO);
+		this.mvc.perform(put("/places/update/1").content(testPlaceAsJSON)
+				.contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
-		.andExpect(content().json(updatePlaceAsJSON));
+		.andExpect(content().json(updatedPlaceAsJSON));
 	}
 	
 	//delete
@@ -90,3 +96,31 @@ public class PlaceIntegrationTest {
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
