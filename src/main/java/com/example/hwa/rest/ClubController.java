@@ -38,7 +38,7 @@ public class ClubController {
 	public List<ClubDTO> readClubs(){
 		return this.service.readClubs();
 	}
-	
+
 	//update
 	@PutMapping("/update/{id}")
 	public ClubDTO updateClub(@RequestBody Club club, @PathVariable int id) {

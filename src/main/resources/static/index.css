@@ -155,7 +155,7 @@ cursor:pointer;
     object-fit:cover;
     height:100%;
     width: 100%;
-    min-height:100px;
+    min-height:200px;
 }
 .body-el{
     padding:.6rem;
