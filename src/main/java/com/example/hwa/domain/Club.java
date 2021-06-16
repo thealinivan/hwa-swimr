@@ -23,6 +23,17 @@ public class Club {
 	
 	public Club() {};
 	
+	public Club(Integer id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+	
+	public Club(String name) {
+		super();
+		this.name = name;
+	}
+	
 	public Club(String name, List<Place> places) {
 		super();
 		this.name = name;

@@ -18,6 +18,19 @@ public class Place {
 	
 	public Place() {};
 	
+	public Place(Integer id, String name, String postcode) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.postcode = postcode;
+	}
+	
+	public Place(String name, String postcode) {
+		super();
+		this.name = name;
+		this.postcode = postcode;
+	}
+	
 	public Place(String name, String postcode, Club club) {
 		super();
 		this.name = name;
