@@ -14,6 +14,12 @@ public class ClubDTO {
 		this.name = name;
 		this.places = places;
 	}
+	
+	public ClubDTO(Integer id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
 
 	public ClubDTO(Integer id, String name, List<PlaceDTO> places) {
 		super();

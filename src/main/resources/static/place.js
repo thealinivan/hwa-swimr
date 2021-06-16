@@ -48,6 +48,15 @@ const getPlaces = async () => {
     })
 }
 
+//count places for a club
+const clubPlaces = (club) => {
+    let count = 0;
+    for (const place of club.places) {
+        count++;
+    }
+    return count;
+}
+
 const renderPlace = (place) => {
     const card = `
                 <div class="card-container">
