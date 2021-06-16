@@ -227,9 +227,14 @@ localhost:8080/index.html
 ```
 This will run the server the same way it is deployed in your IDE in the console, the difference being that you do not need an IDE anymore.
 
-///Screenshot with index.html
-///Screenhot with place.html
-///Screenshot with update pop-up
+![image](https://user-images.githubusercontent.com/29833025/122302695-5f3e5b00-cefa-11eb-8632-d58f641cea7c.png)
+	
+![image](https://user-images.githubusercontent.com/29833025/122302843-93198080-cefa-11eb-9844-2b495edf326a.png)
+	
+![image](https://user-images.githubusercontent.com/29833025/122302980-c3611f00-cefa-11eb-9448-d2363bfb6de8.png)
+
+![image](https://user-images.githubusercontent.com/29833025/122303078-df64c080-cefa-11eb-9541-17c0a4db8c80.png)
+
 
 
 More documentation over the Website Mockups, Database ERD, Java classes UML Diagrams, test reports and risk assesement management see documentation folder in the source directory.
