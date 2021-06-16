@@ -1,2 +1,2 @@
-INSERT INTO `testdb`.`club` (`name`) VALUES ('Team Birch');
-INSERT INTO `testdb`.`place` (`name`, 'postcode', 'club_id') VALUES ('Hackney Pool', 'E12 6LB', '1');
+insert into club (`name`) values ('Team Birch');
+insert into place (`name`, `postcode`, `club_id`) values ('Hackney Pool', 'E12 6LB', '1');
