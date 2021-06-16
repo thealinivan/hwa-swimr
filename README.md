@@ -14,26 +14,27 @@ These instructions will get you a copy of the project up and running on your loc
 ## Prerequisites
 
 
-* #### [Operating system](https://github.com/Thealinivan/hwa-swimr#Operating-system-Windows-10)
-* #### [Programming language](https://github.com/Thealinivan/hwa-swimr#Programming-language-Java-JDK)
-* #### [Spring framework](https://github.com/Thealinivan/hwa-swimr#Spring-framework)
-* #### [Build tool](https://github.com/Thealinivan/hwa-swimr#Build-tool-Maven)
-* #### [Data storage environment](https://github.com/Thealinivan/hwa-swimr#Data-storage-MySQL-WorkBench)
-* #### [Integrates Development Environment](https://github.com/Thealinivan/hwa-swimr#Integrated-Development-Environment-Eclipse-IDE)
-	* ##### [Integrates Development Environment](https://github.com/Thealinivan/hwa-swimr#Integrated-Development-Environment-Eclipse-IDE)
-	* ##### [Integrates Development Environment](https://github.com/Thealinivan/hwa-swimr#Integrated-Development-Visual-Studio-Code)
-* #### [Version control](https://github.com/Thealinivan/hwa-swimr#Version-control-Git-Bash)
+* #### [Operating system](https://github.com/thealinivan/hwa-swimr#Operating-system-Windows-10)
+* #### [Programming language](https://github.com/thealinivan/hwa-swimr#Programming-language-Java-JDK)
+* #### [Spring framework](https://github.com/thealinivan/hwa-swimr#Spring-framework)
+* #### [Build tool](https://github.com/thealinivan/hwa-swimr#Build-tool-Maven)
+* #### [Data storage environment](https://github.com/thealinivan/hwa-swimr#Data-storage-MySQL-WorkBench)
+* #### [Integrated Development Environment](https://github.com/thealinivan/hwa-swimr#Integrated-Development-Environment-Eclipse-IDE)
+	* ##### [Integrated Development Environment](https://github.com/thealinivan/hwa-swimr#Integrated-Development-Environment-Eclipse-IDE)
+	* ##### [Integrated Development Environment](https://github.com/thealinivan/hwa-swimr#Integrated-Development-Visual-Studio-Code)
+* #### [Version control](https://github.com/thealinivan/hwa-swimr#Version-control-Git-Bash)
 
 
 
 ## Runing the project
 
-* #### [Running on the local environment](https://github.com/Thealinivan/hwa-swimr#Running-the-project-in-development)
-* #### [Testing](https://github.com/Thealinivan/hwa-swimr#Testing)
-	* ##### [Unit testing](https://github.com/Thealinivan/thealinivan-assessment#Unit-Tests-JUnit)
-	* ##### [Integration testing](https://github.com/Thealinivan/hwa-swimr#Integration-tests-Mockito)
-	* ##### [Code quality testing](https://github.com/Thealinivan/hwa-swimr#Static-analysis-tests-SonarQube)
-* #### [Deployment](https://github.com/Thealinivan/hwa-swimr#Deployment-Maven)
+* #### [Running on the local environment](https://github.com/thealinivan/hwa-swimr#Running-the-project-in-development)
+* #### [Testing](https://github.com/thealinivan/hwa-swimr#Testing)
+	* ##### [Unit testing](https://github.com/thealinivan/thealinivan-assessment#Unit-Tests-JUnit)
+	* ##### [Integration testing](https://github.com/thealinivan/hwa-swimr#Integration-tests-Mockito)
+	* ##### [User acceptance testing](https://github.com/thealinivan/hwa-swimr#User-acceptance-testing-Selenium)
+	* ##### [Code quality testing](https://github.com/thealinivan/hwa-swimr#Static-analysis-tests-SonarQube)
+* #### [Deployment](https://github.com/thealinivan/hwa-swimr#Deployment-Maven)
 
 
 
@@ -148,11 +149,6 @@ or
 localhost:8080/index.html
 ```
 
-///Screenshot with index.html
-///Screenshot with update pop-up
-
-
-``` 
 
 ### Testing
 
@@ -177,6 +173,10 @@ See repo documentation foro further reference and test reports.
 ```
 Intergration tests can be runned from Eclipse IDE
 ```
+
+### User-acceptance-testing-Selenium
+
+Start here https://www.selenium.dev/
 
 ### Static-analysis-tests-SonarQube
 
@@ -228,8 +228,8 @@ localhost:8080/index.html
 This will run the server the same way it is deployed in your IDE in the console, the difference being that you do not need an IDE anymore.
 
 ///Screenshot with index.html
+///Screenhot with place.html
 ///Screenshot with update pop-up
-
 
 
 More documentation over the Website Mockups, Database ERD, Java classes UML Diagrams, test reports and risk assesement management see documentation folder in the source directory.
