@@ -23,8 +23,9 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 
-
+import com.example.hwa.domain.Club;
 import com.example.hwa.domain.Place;
+import com.example.hwa.dto.ClubDTO;
 import com.example.hwa.dto.PlaceDTO;
 import com.example.hwa.repo.PlaceRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -73,11 +74,11 @@ public class PlaceIntegrationTest {
 	//update
 	@Test
 	void testUpdatePlace() throws Exception {
-		Place testPlace = new Place(1, "Leytonstone Pool", "E12 6LB");
-		String testPlaceAsJSON = this.mapper.writeValueAsString(testPlace);
-		Place updatedPlaceDTO = new Place(1, "Leytonstone Pool", "E12 6LB");
+		Place toUpdatePlace = new Place(1, "Leytonstone Pool", "E11 3DW");
+		String toUpdatePlaceAsJSON =  this.mapper.writeValueAsString(toUpdatePlace);
+		PlaceDTO updatedPlaceDTO = new PlaceDTO(1, "Leytonstone Pool", "E11 3DW");
 		String updatedPlaceAsJSON = this.mapper.writeValueAsString(updatedPlaceDTO);
-		this.mvc.perform(put("/places/update/1").content(testPlaceAsJSON)
+		this.mvc.perform(put("/places/update/1").content(toUpdatePlaceAsJSON)
 				.contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(content().json(updatedPlaceAsJSON));

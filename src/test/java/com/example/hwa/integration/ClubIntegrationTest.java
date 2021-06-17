@@ -8,6 +8,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.MediaType;
@@ -24,6 +26,7 @@ import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 import com.example.hwa.domain.Club;
 import com.example.hwa.domain.Place;
 import com.example.hwa.dto.ClubDTO;
+import com.example.hwa.dto.PlaceDTO;
 import com.example.hwa.repo.ClubRepo;
 import com.example.hwa.repo.PlaceRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -59,9 +62,11 @@ public class ClubIntegrationTest {
 	//read
 	@Test
 	void testReadClubs() throws Exception {
-		Club testClub = new Club(1, "Team Birch");
-		List<Club> clubs = List.of(testClub);
-		String testClubAsJSONArray = this.mapper.writeValueAsString(clubs);
+		PlaceDTO place = new PlaceDTO(1, "Hackney Pool", "E12 6LB");
+		List<PlaceDTO> placesDTOs = List.of(place);
+		ClubDTO clubDTO = new ClubDTO(1, "Team Birch", placesDTOs);;
+		List<ClubDTO> clubsDTOs = List.of(clubDTO);
+		String testClubAsJSONArray = this.mapper.writeValueAsString(clubsDTOs);
 		this.mvc.perform(get("/clubs/readAll"))
 		.andExpect(status().isOk())
 		.andExpect(content().json(testClubAsJSONArray));
@@ -70,14 +75,16 @@ public class ClubIntegrationTest {
 	//update
 	@Test
 	void testUpdateClub() throws Exception {
-		Club actual = new Club(1, "Team Elm");
-		String actualClubAsJSON = this.mapper.writeValueAsString(actual);
-		ClubDTO updatedClubDTO = new ClubDTO(1, "Team Elm");
+		Club toUpdateClub = new Club(1, "Team Elm");
+		String toUpdateClubAsJSON =  this.mapper.writeValueAsString(toUpdateClub);
+		PlaceDTO place = new PlaceDTO(1, "Hackney Pool", "E12 6LB");
+		List<PlaceDTO> placesDTOs = List.of(place);
+		ClubDTO updatedClubDTO = new ClubDTO(1, "Team Elm", placesDTOs);
 		String updatedClubAsJSON = this.mapper.writeValueAsString(updatedClubDTO);
-		this.mvc.perform(post("/clubs/create").content(updatedClubAsJSON)
+		this.mvc.perform(put("/clubs/update/1").content(toUpdateClubAsJSON)
 				.contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
-		.andExpect(content().json(actualClubAsJSON));
+		.andExpect(content().json(updatedClubAsJSON));
 	}
 	
 	//delete
@@ -91,9 +98,11 @@ public class ClubIntegrationTest {
 	//read by id
 	@Test
 	void testReadByID() throws Exception {
-		Club testClub = new Club(1, "Team Birch");
-		String testClubAsJSONArray = this.mapper.writeValueAsString(testClub);
-		this.mvc.perform(get("/clubs/readById/1"))
+		PlaceDTO place = new PlaceDTO(1, "Hackney Pool", "E12 6LB");
+		List<PlaceDTO> placesDTOs = List.of(place);
+		ClubDTO testClubDTO = new ClubDTO(1, "Team Birch", placesDTOs);
+		String testClubAsJSONArray = this.mapper.writeValueAsString(testClubDTO);
+		this.mvc.perform(get("/clubs/read/1"))
 		.andExpect(status().isOk())
 		.andExpect(content().json(testClubAsJSONArray));
 	}
