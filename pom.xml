@@ -53,20 +53,20 @@
     		<version>3.0.0</version>
 		</dependency>
 		
-		 <!-- https://mvnrepository.com/artifact/junit/junit -->
-	    <dependency>
-	        <groupId>junit</groupId>
-	        <artifactId>junit</artifactId>
-	        <version>4.12</version><!--$NO-MVN-MAN-VER$-->
-	        <scope>test</scope>
-	    </dependency>
-	
-	    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-	    <dependency>
-	        <groupId>org.seleniumhq.selenium</groupId>
-	        <artifactId>selenium-java</artifactId>
-	        <version>3.141.59</version><!--$NO-MVN-MAN-VER$-->
-	    </dependency>
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>3.141.59</version>
+		</dependency>
 	</dependencies>
 
 	<build>
