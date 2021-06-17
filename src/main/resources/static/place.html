@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title href="swimr.html">Swimr</title>
+    <!-- favicons -->
+    <link rel="icon" href="img/favicon2.png">
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- styles -->
+    <link rel="stylesheet" href="index.css">
+
+    <!-- scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="place.js" async></script>
+    <!-- Google maps API -->
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUfUckWghbs-wyuV-KNPODMAQcog4qA28&callback=initMap">
+        </script>
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img class="logo-img" src="img/logo_small1.png" alt="marketplace logo">
+                </a>
+                <form class="d-flex">
+                    <input class="form-control me-2 search-field" name="name" type="search"
+                        placeholder="Search places.." aria-label="Search" id="field-search">
+                    <button class="btn btn-outline-primary" type="submit" id="btn-search">Search</button>
+                </form>
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- main -->
+    <main>
+
+        <!-- clubs title -->
+        <section class="title-section">
+            <div class="clubs-container">
+                <div class="row align-self-center club-img-container">
+                    <h4 class="club-img-title" id="place-title">Club name</h4>
+                </div>
+        </section>
+
+        <!-- add form -->
+        <section>
+            <form id="add-form" class="add-form">
+                <h2>Add a swimming place</h2>
+                <br>
+                <div class="form-group">
+                    <label for="add-name">Swimming place name</label>
+                    <input type="name" name="name" class="form-control" id="add-name" aria-describedby="nameHelp"
+                        placeholder="Place name..">
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="add-postcode">Location postcode</label>
+                    <input type="postcode" name="postcode" class="form-control" id="add-postcode"
+                        placeholder="Postcode..">
+                </div>
+                <br>
+                <button type="submit" id="add-btn" class="btn btn-outline-primary add-btn">Add swimming
+                    place</button>
+            </form>
+        </section>
+
+        <!-- articles list -->
+        <section>
+            <div id="render">
+                <!-- Places list goes here -->
+            </div>
+        </section>
+
+        <!-- update modal -->
+        <section>
+
+            <div class="modal" id="btn-update" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Update swimming place</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form id="update-form" class="update-form">
+                                <div class="form-group">
+                                    <label for="update-name">Swimming place name</label>
+                                    <input type="name" name="name" class="form-control" id="update-name"
+                                        aria-describedby="nameHelp" placeholder="Place name">
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label for="update-postcode">Location postcode</label>
+                                    <input type="postcode" name="postcode" class="form-control" id="update-postcode"
+                                        placeholder="Postcode">
+                                </div>
+                                <br>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-outline-primary" id="update-btn">Save
+                                        changes</button>
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+    </main>
+
+    <!-- footer -->
+    <footer>
+        <div class="foot-container">
+            <div class="row">
+                <div class="col-sm-3 card-el text-center foot-el">
+                    <a href="https://www.facebook.com/"><img class="foot-img" src="img/icon_facebook.png"
+                            alt="facebook icon"></a>
+                </div>
+                <div class="col-sm-3 card-el text-center foot-el">
+                    <a href="https://twitter.com/?lang=en-gb"><img class="foot-img" src="img/icon_twitter.png"
+                            alt="twitter icon"></a>
+                </div>
+                <div class="col-sm-3 card-el text-center foot-el">
+                    <a href="https://www.instagram.com/"><img class="foot-img" src="img/icon_instagram.png"
+                            alt="instagram icon"></a>
+                </div>
+                <div class="col-sm-3 card-el text-center foot-el">
+                    <a href="https://www.linkedin.com/in/"><img class="foot-img" src="img/icon_linkedin.png"
+                            alt="linkedin icon"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- bootstrap -->
+    <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>

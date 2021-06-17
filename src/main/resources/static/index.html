@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title href="#">Swimr</title>
+    <!-- favicons -->
+    <link rel="icon" href="img/favicon2.png">
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- styles -->
+    <link rel="stylesheet" href="index.css">
+
+    <!-- scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="index.js" async></script>
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img class="logo-img" src="img/logo_small1.png" alt="marketplace logo">
+                </a>
+                <form class="d-flex">
+                    <input class="form-control me-2 search-field" type="search" placeholder="Search clubs.."
+                        aria-label="Search" id="field-search">
+                    <button class="btn btn-outline-primary" type="submit" id="btn-search">Search</button>
+                </form>
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- main -->
+    <main>
+
+        <!-- carousel -->
+        <section id="carousel" class="carousel-categories">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="img/club.jpg" class="d-block w-100" alt="swimming people club">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/outdoor.png" class="d-block w-100" alt="outdoor ocean golf">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- add club -->
+        <section>
+            <form id="club-form" class="add-form">
+                <h2>Add a club</h2>
+                <br>
+                <div class="form-group">
+                    <label for="add-club-name">Club name</label>
+                    <input type="name" name="name" class="form-control" id="add-club-name" aria-describedby="nameHelp"
+                        placeholder="Club name..">
+                </div>
+                <br>
+                <button type="submit" id="add-btn" class="btn btn-outline-primary add-btn">Add club</button>
+            </form>
+        </section>
+
+        <!-- club list -->
+        <section>
+            <div id="render-club"></div>
+        </section>
+
+        <!-- modal -->
+        <section>
+
+            <div class="modal" id="btn-update-club" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Update Club</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form id="update-form" class="update-form">
+                                <div class="form-group">
+                                    <label for="update-club-name">Club name</label>
+                                    <input type="name" name="name" class="form-control" id="update-club-name"
+                                        aria-describedby="nameHelp" placeholder="Club name..">
+                                </div>
+                                <br>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-outline-primary" id="update-btn">Save
+                                        changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+    </main>
+
+    <!-- footer -->
+    <footer>
+        <div class="foot-container">
+            <div class="row">
+                <div class="col-sm-3 card-el text-center foot-el">
+                    <a href="https://www.facebook.com/"><img class="foot-img" src="img/icon_facebook.png"
+                            alt="facebook icon"></a>
+                </div>
+                <div class="col-sm-3 card-el text-center foot-el">
+                    <a href="https://twitter.com/?lang=en-gb"><img class="foot-img" src="img/icon_twitter.png"
+                            alt="twitter icon"></a>
+                </div>
+                <div class="col-sm-3 card-el text-center foot-el">
+                    <a href="https://www.instagram.com/"><img class="foot-img" src="img/icon_instagram.png"
+                            alt="instagram icon"></a>
+                </div>
+                <div class="col-sm-3 card-el text-center foot-el">
+                    <a href="https://www.linkedin.com/in/"><img class="foot-img" src="img/icon_linkedin.png"
+                            alt="linkedin icon"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- bootstrap -->
+    <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>
