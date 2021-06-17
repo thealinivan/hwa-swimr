@@ -31,20 +31,19 @@ public class PlaceServiceTest {
 	@Test
 	void testCreatePlace() {
 		//GIVEN
-		Place actual = new Place("Hackney Pool", "E12 6LB");
-		Place saved = new Place(2, "Hackney Pool", "E12 6LB");
+		Place saved = new Place(2, "Hackney Pool", "E12 6LB", new Club());
 		PlaceDTO savedPlaceDTO = new PlaceDTO(2, "Hackney Pool", "E12 6LB");
 		//WHEN
-		Mockito.when(this.repo.save(actual)).thenReturn(saved);
+		Mockito.when(this.repo.save(saved)).thenReturn(saved);
 		//THEN
-		assertThat(this.service.createPlace(actual)).isEqualTo(savedPlaceDTO);
+		assertThat(this.service.createPlace(saved)).isEqualTo(savedPlaceDTO);
 	}
 		
 	//read
 	@Test
 	void testReadPlaces() {
 		//GIVEN
-		Place currentPlace = new Place(1, "Hackney Pool", "E12 6LB");
+		Place currentPlace = new Place(1, "Hackney Pool", "E12 6LB", new Club());
 		List<Place> places = List.of(currentPlace);
 		PlaceDTO currentPlaceDTO = new PlaceDTO(1, "Hackney Pool", "E12 6LB");
         List<PlaceDTO> placesDTOs = List.of(currentPlaceDTO);
@@ -58,19 +57,15 @@ public class PlaceServiceTest {
 	@Test
 	void testUpdatePlace() {
 		//GIVEN
-		Integer actualId = 1;
-		Place actual = new Place("Eastham Pool", "E12 6LB");
 		Place currentPlace = new Place(1, "Hackney Pool", "E12 6LB");
-		Place updatedPlace = new Place(actualId, "Eastham Pool", "E11 3DW");
-		PlaceDTO updatedPlaceDTO = new PlaceDTO(actualId, "Eastham Pool", "E11 3DW");
+		Place updatedPlace = new Place(1, "Eastham Pool", "E11 3DW");
+		PlaceDTO updatedPlaceDTO = new PlaceDTO(1, "Eastham Pool", "E11 3DW");
 		//WHEN
-		Mockito.when(this.repo.findById(actualId)).thenReturn(Optional.of(currentPlace));
+		Mockito.when(this.repo.findById(1)).thenReturn(Optional.of(currentPlace));
 		Mockito.when(this.repo.save(updatedPlace)).thenReturn(updatedPlace);
 		//THEN
-		assertThat(this.service.updatePlace(actualId, actual)).isEqualTo(updatedPlaceDTO);
-		//might not need verification
-		Mockito.verify(this.repo, Mockito.times(1)).findById(actualId);
-		Mockito.verify(this.repo, Mockito.times(1)).save(updatedPlace);
+		assertThat(this.service.updatePlace(1, updatedPlace))
+		.usingRecursiveComparison().isEqualTo(updatedPlaceDTO);
 	}
 	
 	//delete

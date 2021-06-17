@@ -2,6 +2,7 @@ package com.example.hwa.unit.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,9 +16,7 @@ import org.springframework.test.context.ActiveProfiles;
 import com.example.hwa.domain.Club;
 import com.example.hwa.dto.ClubDTO;
 import com.example.hwa.repo.ClubRepo;
-import com.example.hwa.repo.PlaceRepo;
 import com.example.hwa.service.ClubService;
-import com.example.hwa.service.PlaceService;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -33,13 +32,12 @@ public class ClubServiceTest {
 	@Test
 	void testCreateClub() {
 		//GIVEN
-		Club actual = new Club("Team Birch");
 		Club saved = new Club(2, "Team Birch");
-		ClubDTO savedClubDTO = new ClubDTO(2, "Team Birch");
+		ClubDTO savedClubDTO = new ClubDTO(2, "Team Birch", new ArrayList<>());
 		//WHEN
-		Mockito.when(this.repo.save(actual)).thenReturn(saved);
+		Mockito.when(this.repo.save(saved)).thenReturn(saved);
 		//THEN
-		assertThat(this.service.createClub(actual)).isEqualTo(savedClubDTO);
+		assertThat(this.service.createClub(saved)).usingRecursiveComparison().isEqualTo(savedClubDTO);
 		
 	}
 		
@@ -49,7 +47,7 @@ public class ClubServiceTest {
 		//GIVEN
 		Club actual= new Club(1, "Team Birch");
         List<Club> clubs = List.of(actual);
-        ClubDTO currentClubDTO = new ClubDTO(1, "Team Birch");
+        ClubDTO currentClubDTO = new ClubDTO(1, "Team Birch", new ArrayList<>() );
         List<ClubDTO> clubsDTOs = List.of(currentClubDTO);
 		//WHEN
 		Mockito.when(this.repo.findAll()).thenReturn(clubs);
@@ -63,15 +61,14 @@ public class ClubServiceTest {
 	void testUpdateClub() {
 		//GIVEN
 		Integer actualId = 1;
-		Club actual = new Club("Team Birch");
-		Club currentClub = new Club(1, "Team Birch");
-		Club updatedClub = new Club(actualId, "Team Birch");
-		ClubDTO updatedClubDTO = new ClubDTO(actualId, "Team Birch");
+		Club currentClub = new Club(actualId, "Team Birch");
+		Club updatedClub = new Club(actualId, "Team ELm");
+		ClubDTO updatedClubDTO = new ClubDTO(actualId, "Team ELm", new ArrayList<>());
 		//WHEN
 		Mockito.when(this.repo.findById(actualId)).thenReturn(Optional.of(currentClub));
 		Mockito.when(this.repo.save(updatedClub)).thenReturn(updatedClub);
 		//THEN
-		assertThat(this.service.updateClub(actualId, actual)).isEqualTo(updatedClubDTO);
+		assertThat(this.service.updateClub(actualId, updatedClub)).usingRecursiveComparison().isEqualTo(updatedClubDTO);
 	}
 	
 	//delete
@@ -90,11 +87,11 @@ public class ClubServiceTest {
 	void testReadById() {
 		//GIVEN
 		Integer actualId = 1;
-		Club actual = new Club("Team Birch");
-		ClubDTO clubDTO = new ClubDTO(1, "Team Birch");
+		Club actual = new Club(actualId, "Team Birch");
+		ClubDTO clubDTO = new ClubDTO(actualId, "Team Birch", new ArrayList<>());
 		//WHEN
-		Mockito.when(this.repo.findById(1)).thenReturn(Optional.of(actual));
+		Mockito.when(this.repo.findById(actualId)).thenReturn(Optional.of(actual));
 		//THEN
-		assertThat(this.service.readById(1)).isEqualTo(clubDTO);
+		assertThat(this.service.readById(actualId)).isEqualTo(clubDTO);
 	}
 }
