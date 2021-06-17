@@ -37,15 +37,9 @@ public class ClubMapper implements Mapper<Club, ClubDTO> {
 
 	@Override
 	public Club mapFromDTO(ClubDTO dto) {
-		Club club = new Club();
-		List<Place> places = new ArrayList<>();
-		club.setId(dto.getId());
-		club.setName(dto.getName());
-		for (PlaceDTO placeDTO : dto.getPlaces()) {
-			places.add(this.placeMapper.mapFromDTO(placeDTO));
-		}
-		club.setPlaces(places);
-		return club;
+		return null;
 	}
+
+
 	
 }

@@ -19,12 +19,10 @@ public class PlaceMapper implements Mapper<Place, PlaceDTO> {
 
 	@Override
 	public Place mapFromDTO(PlaceDTO dto) {
-		Place place = new Place();
-		place.setId(dto.getId());
-		place.setName(dto.getName());
-		place.setPostcode(dto.getPostcode());
-		return place;
+		return null;
 	}
+
+	
 
 	
 }

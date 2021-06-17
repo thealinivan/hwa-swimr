@@ -8,12 +8,6 @@ public class ClubDTO {
 	private List<PlaceDTO> places;
 	
 	public ClubDTO() {}
-
-//	public ClubDTO(String name, List<PlaceDTO> places) {
-//		super();
-//		this.name = name;
-//		this.places = places;
-//	}
 	
 	public ClubDTO(Integer id, String name) {
 		super();

@@ -17,14 +17,6 @@ public class PlaceDTO {
 		this.name = name;
 		this.postcode = postcode;
 	}
-	
-//	public PlaceDTO(Integer id, String name, String postcode, Club club) {
-//		super();
-//		this.id = id;
-//		this.name = name;
-//		this.postcode = postcode;
-//		this.club = club;
-//	}
 
 	public Integer getId() {
 		return id;
