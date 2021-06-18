@@ -27,31 +27,55 @@ const clubPlaces = (club) => {
 const renderClub = (club) => {
 
 
-    const card = `
-            <div class="card-container">
-                <div class="row align-self-center">
-                    <div class="col-sm-12 col-md-9 col-lg-10 ">
-                        <a href="./place.html?id=${club.id}">
-                            <h3 id="card-name">${club.name}</h3>
-                            <p>Swimmming places: <b>${clubPlaces(club)}</b></p>
-                        </a>
-                    </div>
-                    <div class="col-sm-12 col-md-3 col-lg-2 text-center">
-                        <div class="col-sm-12 card-el text-center card-btn">
-                            <button type="submit" onClick="deleteClub(${club.id})" class="btn btn-outline-danger card-el"
-                                id='card-delete-btn'>Delete</button>
-                        </div>
-                        <div class="col-sm-12 card-el text-center card-btn">
-                            <button type="submit" data-bs-toggle="modal" data-id=${club.id} data-bs-target="#btn-update-club"
-                                class="btn btn-outline-warning card-el">Update</button>
-                        </div>
-                    </div>
+    const card = document.createElement('div');
+    card.className = "card-container";
 
-                </div>
-            </div>
-        `;
+    const row = document.createElement('div');
+    row.classList.add('row', 'align-self-center');
+    card.appendChild(row);
 
-    $('#render-club').append(card);
+    const grid1 = document.createElement('div');
+    grid1.classList.add('col-sm-12', 'col-md-9', 'col-lg-10');
+    row.appendChild(grid1);
+
+    const link = document.createElement('a');
+    link.href = `./place.html?id=${club.id}`;
+    grid1.appendChild(link);
+
+    const title = document.createElement('h3');
+    title.innerText = club.name;
+    link.appendChild(title);
+
+    const subtitle = document.createElement('p');
+    subtitle.innerText = `Swimmming places: ${clubPlaces(club)}`;
+    link.appendChild(subtitle);
+
+    const grid2 = document.createElement('div');
+    grid2.classList.add('col-sm-12', 'col-md-3', 'col-lg-2', 'text-center');
+    row.appendChild(grid2);
+
+    const grid31 = document.createElement('div');
+    grid31.classList.add('col-sm-12', 'card-el', 'text-center', 'card-btn');
+    grid2.appendChild(grid31);
+
+    const delBtn = document.createElement('button');
+    delBtn.classList.add('btn', 'btn-outline-danger', 'card-el');
+    delBtn.type = 'submit';
+    delBtn.innerText = 'Delete';
+    delBtn.addEventListener('click', function () { deleteClub(club.id) })
+    grid31.append(delBtn);
+
+    const grid32 = document.createElement('div');
+    grid32.classList.add('col-sm-12', 'card-el', 'text-center', 'card-btn');
+    grid2.appendChild(grid32);
+
+    const updateBtn = `
+            <button type="submit" data-bs-toggle="modal" data-id=${club.id} data-bs-target="#btn-update-club"
+                class="btn btn-outline-warning card-el">Update</button>
+    `
+    $(grid32).append(updateBtn);
+
+    document.getElementById('render-club').appendChild(card);
 }
 
 //delete a club
