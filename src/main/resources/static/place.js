@@ -58,55 +58,85 @@ const clubPlaces = (club) => {
 }
 
 const renderPlace = (place) => {
-    const card = `
-                <div class="card-container">
-                    <div class="row align-self-center">
+    const card = document.createElement('div');
+    card.className = "card-container";
 
-                        <!-- img -->
-                        <div class="col-sm-12 col-md-4 col-lg-4 text-center" id="card-map">
-                             <div id='map-${place.id}' class="card-img"></div>
-                        </div>
+    const row = document.createElement('div');
+    row.classList.add('row', 'align-self-center');
+    card.appendChild(row);
 
-                        <!-- body -->
-                        <div class="col-sm-12 col-md-5 col-lg-6 ">
-                            <div class="container">
+    const grid1 = document.createElement('div');
+    grid1.classList.add('col-sm-12', 'col-md-4', 'col-lg-4', 'text-center');
+    grid1.id = 'card-map';
+    row.appendChild(grid1);
 
-                                <!-- card-title -->
-                                <div class="col-sm-12 body-el">
-                                    <h3 id="card-name">${place.name}</h3>
-                                </div>
+    const map = document.createElement('div');
+    map.classList.add('card-img');
+    map.id = `map-${place.id}`;
+    grid1.appendChild(map);
 
-                                <!-- card-postcode -->
-                                <div class="row align-self-center">
-                                    <div class="col-sm-3 col-md-6 col-lg-2 text-center">
-                                        <img class="card-el-icon" src="img/icon_pin.png" alt="pin icon">
-                                    </div>
-                                    <div class="col-sm-3 col-md-4 col-lg-3 text-center body-el" id="card-postcode">
-                                         ${place.postcode}
-                                    </div>
-                                </div>
+    const grid2 = document.createElement('div');
+    grid2.classList.add('col-sm-12', 'col-md-5', 'col-lg-6');
+    row.appendChild(grid2);
 
-                            </div>
-                        </div>
+    const bodyContainer = document.createElement('div');
+    grid2.appendChild(bodyContainer);
 
-                        <!-- buttons -->
-                        <div class="col-sm-12 col-md-3 col-lg-2 text-center">
+    const grid21 = document.createElement('div');
+    grid21.classList.add('col-sm-12', 'body-el');
+    bodyContainer.appendChild(grid21);
 
-                            <div class="col-sm-12 card-el text-center card-btn">
-                                <button type="submit" onClick="deletePlace(${place.id})"class="btn btn-outline-danger card-el"
-                                    id='card-delete-btn'>Delete</button>
-                            </div>
-                            <div class="col-sm-12 card-el text-center card-btn">
-                                <button type="submit" data-bs-toggle="modal" data-id=${place.id} data-bs-target="#btn-update"
-                                    class="btn btn-outline-warning card-el">Update</button>
-                            </div>
-                        </div>
+    const title = document.createElement('h3');
+    title.id = 'card-name';
+    title.innerHTML = place.name;
+    grid21.appendChild(title);
 
-                    </div>
-                </div>
-        `;
+    const grid22 = document.createElement('div');
+    grid22.classList.add('row', 'align-self-center');
+    bodyContainer.appendChild(grid22);
 
-    $("#render").append(card);
+    const grid221 = document.createElement('div');
+    grid221.classList.add('col-sm-3', 'col-md-6', 'col-lg-2', 'text-center');
+    grid22.appendChild(grid221);
+
+    const icon = document.createElement('img');
+    icon.classList.add('card-el-icon');
+    icon.src = 'img/icon_pin.png';
+    icon.alt = 'ballon icon for place';
+    grid221.appendChild(icon);
+
+    const grid222 = document.createElement('div');
+    grid222.classList.add('col-sm-3', 'col-md-4', 'col-lg-3', 'text-center', 'body-el');
+    grid222.id = 'card-postcode';
+    grid222.innerHTML = place.postcode;
+    grid22.appendChild(grid222);
+
+    const btnsGrid = document.createElement('div');
+    btnsGrid.classList.add('col-sm-12', 'col-md-3', 'col-lg-2', 'text-center');
+    row.appendChild(btnsGrid);
+
+    const btnGrid1 = document.createElement('div');
+    btnGrid1.classList.add('col-sm-12', 'card-el', 'text-center', 'card-btn');
+    btnsGrid.appendChild(btnGrid1);
+
+    const delBtn = document.createElement('button');
+    delBtn.classList.add('btn', 'btn-outline-danger', 'card-el');
+    delBtn.type = 'submit';
+    delBtn.innerText = 'Delete';
+    delBtn.addEventListener('click', function () { deletePlace(place.id) })
+    btnGrid1.append(delBtn);
+
+    const btnGrid2 = document.createElement('div');
+    btnGrid2.classList.add('col-sm-12', 'card-el', 'text-center', 'card-btn');
+    btnsGrid.appendChild(btnGrid2);
+
+    const updateBtn = `
+            <button type="submit" data-bs-toggle="modal" data-id=${place.id} data-bs-target="#btn-update"
+                        class="btn btn-outline-warning card-el">Update</button>
+    `
+    $(btnsGrid).append(updateBtn);
+
+    output.appendChild(card);
     getMap(place.postcode, document.getElementById(`map-${place.id}`));
 }
 
