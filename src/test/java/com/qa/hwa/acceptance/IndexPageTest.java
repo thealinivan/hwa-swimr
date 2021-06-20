@@ -122,6 +122,16 @@ public class IndexPageTest {
     //delete
     @Test
     public void testDeleteClub() throws InterruptedException {
+    	//delete place due to foreign key constrain
+    	driver.get(url);
+    	Thread.sleep(1000);
+    	WebElement clubLink = waitToBeVisible(getElementByXPath("//*[@id=\"render-club\"]/div/div/div[1]/a/h3"));
+    	clubLink.click();
+    	Thread.sleep(1000);
+    	WebElement deletePlaceBtn = waitToBeVisible(getElementByXPath("//*[@id=\"render\"]/div/div/div[3]/div[1]/button"));
+    	deletePlaceBtn.click();
+    	Thread.sleep(1000);
+    	//delete club
     	driver.get(url);
     	Thread.sleep(1000);
     	WebElement deleteBtn = waitToBeVisible(getElementByXPath("//*[@id=\"render-club\"]/div[1]/div/div[2]/div[1]/button"));

@@ -80,8 +80,13 @@ const renderClub = (club) => {
 
 //delete a club
 const deleteClub = async (id) => {
-    const res = await axios.delete(`/clubs/delete/${id}`);
-    getClubs();
+    const filtered = clubs.filter(club => club.id === id)
+    if (filtered[0].places.length > 0) {
+        alert("This club cannot be deleted because has active swimming places!");
+    } else {
+        const res = await axios.delete(`/clubs/delete/${id}`);
+        getClubs();
+    }
 };
 
 //search
