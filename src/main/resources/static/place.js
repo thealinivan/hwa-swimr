@@ -87,7 +87,7 @@ const renderPlace = (place) => {
     bodyContainer.appendChild(grid21);
 
     const title = document.createElement('h3');
-    title.id = 'card-name';
+    title.id = `card-name-${place.id}`;
     title.innerHTML = place.name;
     grid21.appendChild(title);
 
@@ -107,7 +107,7 @@ const renderPlace = (place) => {
 
     const grid222 = document.createElement('div');
     grid222.classList.add('col-sm-3', 'col-md-4', 'col-lg-3', 'text-center', 'body-el');
-    grid222.id = 'card-postcode';
+    grid222.id = `card-postcode-${place.id}`;
     grid222.innerHTML = place.postcode;
     grid22.appendChild(grid222);
 

@@ -5,6 +5,7 @@ package com.qa.hwa.acceptance;
 import static org.junit.Assert.assertEquals;
 
 import java.time.Duration;
+import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -45,6 +46,7 @@ public class IndexPageTest {
     	.withTimeout(Duration.ofSeconds(3))
         .pollingEvery(Duration.ofMillis(30000))
         .ignoring(Exception.class)
+        .ignoring(NoSuchElementException.class)
         .until(ExpectedConditions.visibilityOf(expectedElement));
     }
     
@@ -61,7 +63,7 @@ public class IndexPageTest {
     public static void setup() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         ChromeOptions config = new ChromeOptions();
-        config.setHeadless(false);
+        config.setHeadless(true);
         driver = new ChromeDriver();
         driver.manage().window().setSize(new Dimension(500, 900)); 
     }
