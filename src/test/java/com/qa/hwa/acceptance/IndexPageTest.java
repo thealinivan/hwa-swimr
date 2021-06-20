@@ -35,14 +35,13 @@ executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 public class IndexPageTest {
 	
     private static WebDriver driver;
-    private static WebElement targ;
     private String url = "http://localhost:8081/index.html";
     private Actions action = new Actions(driver);
     private FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver);
     private String numberOfPlaces = "Swimming places: ";
     
-    public void waitToBeVisible(WebElement expectedElement) {
-    	wait
+    public WebElement waitToBeVisible(WebElement expectedElement) {
+    	return wait
     	.withTimeout(Duration.ofSeconds(3))
         .pollingEvery(Duration.ofMillis(30000))
         .ignoring(Exception.class)
@@ -63,7 +62,7 @@ public class IndexPageTest {
     public static void setup() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         ChromeOptions config = new ChromeOptions();
-        config.setHeadless(true);
+        config.setHeadless(false);
         driver = new ChromeDriver();
         driver.manage().window().setSize(new Dimension(500, 900)); 
     }
@@ -72,38 +71,33 @@ public class IndexPageTest {
     @Test
     public void testCreateClub() throws InterruptedException {
     	driver.get(url);
-    	waitToBeVisible(getElementById("club-form"));
-    	action.moveToElement(getElementById("club-form")).build().perform();
-    	waitToBeVisible(getElementById("add-club-name"));
-        String clubName = "Team Birch Swimming Club";
-        getElementById("add-club-name").sendKeys(clubName); 
-        getElementById("add-club-name").submit();
+    	WebElement addForm = waitToBeVisible(getElementById("club-form"));
+    	action.moveToElement(addForm).build().perform();
+    	WebElement nameInput = waitToBeVisible(getElementById("add-club-name"));
+    	String savedName = "Team Birch";
+        nameInput.sendKeys(savedName); 
+        nameInput.submit();
+        Thread.sleep(1000);
         
 //        WebDriverWait wait30s = new WebDriverWait(driver,30);
 //        wait30s.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//*[@id=\"render-club\"]"), 2));
         
-        Thread.sleep(1000);
-        waitToBeVisible(getElementByXPath("//*[@id=\"render-club\"]/div[2]/div/div[1]/a/h3"));
+        WebElement expectedName = waitToBeVisible(getElementByXPath("//*[@id=\"render-club\"]/div[2]/div/div[1]/a/h3"));
+        WebElement expectedPlaces = waitToBeVisible(getElementByXPath("//*[@id=\"render-club\"]/div[2]/div/div[1]/a/p"));
         //Assertions
-        targ = getElementByXPath("//*[@id=\"render-club\"]/div[1]/div/div[1]/a/h3");
-        assertEquals(clubName, targ.getText());
-        targ = getElementByXPath("//*[@id=\"render-club\"]/div[1]/div/div[1]/a/p");
-        assertEquals(numberOfPlaces+0, targ.getText());
+        assertEquals(savedName, expectedName.getText());
+        assertEquals(numberOfPlaces+1, expectedPlaces.getText());
     }
-    
     
     //read
     @Test
     public void testReadClub() throws InterruptedException {
     	driver.get(url);
     	Thread.sleep(1000);
-    	waitToBeVisible(getElementByXPath("//*[@id=\"render-club\"]/div[1]/div/div[1]/a/h3"));
-        String clubName = "Team Birch";
+    	String testName = "Team Birch";
+    	WebElement expectedName = waitToBeVisible(getElementByXPath("//*[@id=\"render-club\"]/div[1]/div/div[1]/a/h3"));
         //Assertions
-        targ = getElementByXPath("//*[@id=\"render-club\"]/div[1]/div/div[1]/a/h3");
-        assertEquals(clubName, targ.getText());
-        targ = getElementByXPath("//*[@id=\"render-club\"]/div[1]/div/div[1]/a/p");
-        assertEquals(numberOfPlaces+1, targ.getText());
+        assertEquals(testName, expectedName.getText());
     }
     
     
@@ -112,20 +106,17 @@ public class IndexPageTest {
     public void testUpdateClub() throws InterruptedException {
     	driver.get(url);
     	Thread.sleep(1000);
-    	waitToBeVisible(getElementByXPath("//*[@id=\"render-club\"]/div[1]/div/div[2]/div[2]/button"));
-    	getElementByXPath("//*[@id=\"render-club\"]/div[1]/div/div[2]/div[2]/button").click();
-    	waitToBeVisible(getElementById("update-club-name"));
-    	String clubName = "Team Elm";
-    	getElementById("update-club-name").clear(); 
-    	getElementById("update-club-name").sendKeys(clubName);
-        getElementById("update-club-name").submit();
+    	WebElement updateBtn = waitToBeVisible(getElementByXPath("//*[@id=\"render-club\"]/div[1]/div/div[2]/div[2]/button"));
+    	updateBtn.click();
+    	WebElement nameInput = waitToBeVisible(getElementById("update-club-name"));
+    	String updateName = "Team Elm";
+    	nameInput.clear(); 
+    	nameInput.sendKeys(updateName);
+        nameInput.submit();
         Thread.sleep(1000);
-        waitToBeVisible(getElementByXPath("//*[@id=\"render-club\"]/div[1]/div/div[1]/a/h3"));
+        WebElement expectedName = waitToBeVisible(getElementByXPath("//*[@id=\"render-club\"]/div[1]/div/div[1]/a/h3"));
         //Assertions
-        targ = getElementByXPath("//*[@id=\"render-club\"]/div[1]/div/div[1]/a/h3");
-        assertEquals(clubName, targ.getText());
-        targ = getElementByXPath("//*[@id=\"render-club\"]/div[1]/div/div[1]/a/p");
-        assertEquals(numberOfPlaces+1, targ.getText());
+        assertEquals(updateName, expectedName.getText());  
     }
     
     //delete
@@ -133,8 +124,8 @@ public class IndexPageTest {
     public void testDeleteClub() throws InterruptedException {
     	driver.get(url);
     	Thread.sleep(1000);
-    	waitToBeVisible(getElementByXPath("//*[@id=\"render-club\"]/div[1]/div/div[2]/div[1]/button"));
-    	getElementByXPath("//*[@id=\"render-club\"]/div[1]/div/div[2]/div[1]/button").click();
+    	WebElement deleteBtn = waitToBeVisible(getElementByXPath("//*[@id=\"render-club\"]/div[1]/div/div[2]/div[1]/button"));
+    	deleteBtn.click();
     	Thread.sleep(1000);
     	Boolean isPresent = driver.findElements(By.xpath("//*[@id=\"render-club\"]/div[1]/div/div[1]/a/h3")).size() > 0;
         //Assertions
@@ -145,18 +136,16 @@ public class IndexPageTest {
     @Test
     public void testSearchClub() throws InterruptedException {
     	driver.get(url);
-    	waitToBeVisible(getElementById("field-search"));
+    	WebElement searchInput = waitToBeVisible(getElementById("field-search"));
     	String searchWord = "bir";
     	String actual = "Team Birch";
-        getElementById("field-search").sendKeys(searchWord); 
+        searchInput.sendKeys(searchWord); 
         Thread.sleep(300);
-        getElementById("field-search").submit();
+        searchInput.submit();
     	Thread.sleep(1000);
+    	WebElement expectedName = waitToBeVisible(getElementByXPath("//*[@id=\"render-club\"]/div[1]/div/div[1]/a/h3"));
         //Assertions
-        targ = getElementByXPath("//*[@id=\"render-club\"]/div[1]/div/div[1]/a/h3");
-        assertEquals(actual, targ.getText());
-        targ = getElementByXPath("//*[@id=\"render-club\"]/div[1]/div/div[1]/a/p");
-        assertEquals(numberOfPlaces+1, targ.getText());
+        assertEquals(actual, expectedName.getText());
     }
 
     @AfterAll
