@@ -47,7 +47,7 @@ const renderClub = (club) => {
     link.appendChild(title);
 
     const subtitle = document.createElement('p');
-    subtitle.innerText = `Swimmming places: ${clubPlaces(club)}`;
+    subtitle.innerText = `Swimming places: ${clubPlaces(club)}`;
     link.appendChild(subtitle);
 
     const grid2 = document.createElement('div');
