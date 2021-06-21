@@ -53,21 +53,44 @@
     		<version>3.0.0</version>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<!-- JUnit -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+	
+		<!-- Selenium -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 			<version>3.141.59</version>
 		</dependency>
+		
+		<!-- SonarQube -->
+		<dependency>
+			<groupId>org.sonarsource.scanner.maven</groupId>
+			<artifactId>sonar-maven-plugin</artifactId>
+			<version>3.8.0.2131</version>
+		</dependency>
+		
 	</dependencies>
+
+	<!-- SonaQube profile -->
+	<profiles>
+		<profile>
+			<id>sonar</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<sonar.host.url>http://localhost:9000</sonar.host.url>
+				<sonar.login>admin</sonar.login>
+				<sonar.password>sonarqube</sonar.password>
+			</properties>
+		</profile>
+	</profiles>
 
 	<build>
 		<plugins>
@@ -75,6 +98,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			
 		</plugins>
 	</build>
 

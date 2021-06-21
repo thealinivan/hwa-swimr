@@ -235,6 +235,8 @@ This will run the server the same way it is deployed in your IDE in the console,
 
 ![image](https://user-images.githubusercontent.com/29833025/122303078-df64c080-cefa-11eb-9541-17c0a4db8c80.png)
 
+![image](https://user-images.githubusercontent.com/29833025/122453885-9cf6be80-cfa2-11eb-84c4-7e19844c1290.png)
+
 
 
 More documentation over the Website Mockups, Database ERD, Java classes UML Diagrams, test reports and risk assesement management see documentation folder in the source directory.
